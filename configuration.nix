@@ -9,11 +9,11 @@
 		./bootloader
 		./hardware # Enable various hardware capabilities
 		./hardware/amd/radeon.nix
-		./hardware/amd/ryzen.nix
+		#./hardware/amd/ryzen.nix
 		./hardware/intel.nix
-		./hardware/laptop.nix
-		./hardware/mounts.nix # Disks to mount on startup
-		./hardware/nvidia.nix
+		#./hardware/laptop.nix
+		#./hardware/mounts.nix # Disks to mount on startup
+		#./hardware/nvidia.nix
 		./hardware/virtualisation.nix
 		./system/desktop
 		./system/desktop/gnome

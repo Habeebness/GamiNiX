@@ -8,12 +8,16 @@
 	]; # Setup home manager
 
 	# Set your time zone
-	time.timeZone = "Europe/Bucharest";
+	time.timeZone = "America/Toronto";
 
 	# Set your locale settings
 	i18n = {
 		defaultLocale = "en_US.utf8";
-		extraLocaleSettings.LC_MEASUREMENT = "es_ES.utf8";
+		extraLocaleSettings.LC_MEASUREMENT = "en_CA.utf8";
+		extraLocaleSettings.LC_MONETARY = "en_CA.utf8";
+    extraLocaleSettings.LC_PAPER = "en_CA.utf8";
+    extraLocaleSettings.LC_TIME = "en_CA.utf8";
+    extraLocaleSettings.LC_NUMERIC = "en_CA.utf8";
 	};
 
 	services = {
@@ -34,7 +38,7 @@
 				};
 			};
 
-			layout = "us,gr";
+			layout = "us";
 		};
 
 		# Enable sound with pipewire

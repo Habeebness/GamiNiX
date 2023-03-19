@@ -1,5 +1,5 @@
 ### PACKAGES INSTALLED ON MAIN USER ###
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 lib.mkIf config.main.user.enable {
 	users.users.${config.main.user.username}.packages = with pkgs; lib.mkIf config.main.user.enable [

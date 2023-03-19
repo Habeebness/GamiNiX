@@ -35,7 +35,7 @@
 		rnix-lsp # Nix language server
 		rnnoise-plugin # A real-time noise suppression plugin
 		signal-desktop # Encrypted messaging platform
-		sublime4 # Text editor
+		#sublime4 # Text editor
 		tree # Display folder content at a tree format
 		unrar # Support opening rar files
 		vscodium # All purpose IDE
@@ -46,6 +46,7 @@
 		xorg.xhost # Use x.org server with distrobox
 		zenstates # Ryzen CPU controller
 		zerotierone # Virtual lan network
+		google-chrome # Hate it and love it Browser
 	];
 
 	users.defaultUserShell = pkgs.zsh; # Use ZSH shell for all users
@@ -76,7 +77,7 @@
 				ls="lsd"; # Better ls command
 				mva="rsync -rP --remove-source-files"; # Move command with details
 				ping="gping"; # ping with a graph
-				reboot-windows="sudo efibootmgr --bootnext ${config.boot.windows-entry} && reboot"; # Reboot to windows
+				#reboot-windows="sudo efibootmgr --bootnext ${config.boot.windows-entry} && reboot"; # Reboot to windows
 				rebuild="(cd $(head -1 /etc/nixos/.configuration-location) 2> /dev/null || (echo 'Configuration path is invalid. Run rebuild.sh manually to update the path!' && false) && bash rebuild.sh)"; # Rebuild the system configuration
 				restart-pipewire="systemctl --user restart pipewire"; # Restart pipewire
 				server="ssh server@192.168.1.2"; # Connect to local server
@@ -104,4 +105,17 @@
 	environment.etc."rnnoise-plugin/librnnoise_ladspa.so".source = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
 	environment.etc."proton-ge-nix".source = "${(pkgs.callPackage self-built/proton-ge.nix {})}/";
 	environment.etc."apx/config.json".source = "${(pkgs.callPackage self-built/apx.nix {})}/etc/apx/config.json";
+	#environment 
+  environment.sessionVariables = rec {
+    XDG_CACHE_HOME  = "\${HOME}/.cache";
+    XDG_CONFIG_HOME = "\${HOME}/.config";
+    XDG_BIN_HOME    = "\${HOME}/.local/bin";
+    XDG_DATA_HOME   = "\${HOME}/.local/share";
+    # Steam needs this to find Proton-GE
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
+    # note: this doesn't replace PATH, it just adds this to it
+    PATH = [ 
+      "\${XDG_BIN_HOME}"
+    ];
+  };
 }

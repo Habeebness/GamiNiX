@@ -3,7 +3,7 @@
 lib.mkIf config.amd.cpu.enable {
 	boot.kernelModules = [ "msr" ]; # Needed for zenstates
 
-	hardware.cpu.amd.updateMicrocode = true;
+	hardware.cpu.amd.updateMicrocode = false;
 
 	# Ryzen cpu control
 	systemd.services.zenstates = lib.mkIf config.amd.cpu.undervolt.enable {

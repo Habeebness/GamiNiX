@@ -30,16 +30,17 @@
 			gnome.gnome-themes-extra # Adwaita GTK theme
 			gnome.nautilus # File manager
 			grim # Screenshot tool
-			jq # JSON parser
 			networkmanagerapplet # Network manager tray icon
 			pavucontrol # Sound manager
 			polkit_gnome # Polkit manager
 			rofi-wayland # App launcher
+			nwg-drawer # Sexy App launcher
 			slurp # Monitor selector
 			swappy # Edit screenshots
 			wdisplays # Displays manager
 			wl-clipboard # Clipboard daemon
 			wlogout # Logout screen
+			swww # wallpaper
 		];
 
 		etc = {

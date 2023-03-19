@@ -2,7 +2,7 @@
 	"layer": "top",
 	"modules-left": ["wlr/workspaces"],
 	"modules-center": ["hyprland/window"],
-	"modules-right": ["tray", "custom/vpn", "custom/separator", "bluetooth", "custom/separator", "hyprland/language", "custom/separator","pulseaudio", "custom/separator", "clock", "custom/separator", "custom/power"],
+	"modules-right": ["tray", "custom/separator", "bluetooth", "custom/separator", "hyprland/language", "custom/separator","pulseaudio", "custom/separator", "clock", "custom/separator", "custom/power"],
 
 	"bluetooth": {
 		"format": "  {status}",
@@ -29,7 +29,10 @@
 	},
 
 	"pulseaudio": {
-		"format": "{volume}",
+		"format": "{icon}  {volume}",
+		"format-icons": {
+			"default": ["", ""]
+		},
 		"scroll-step": 5,
 		"on-click": "pavucontrol"
 	},
@@ -48,8 +51,7 @@
 	"hyprland/language": {
 		"format": "{}",
 		"format-en": "US",
-		"format-gr": "GR",
-		"on-click": "hyprctl switchxkblayout kingston-hyperx-alloy-fps-pro-mechanical-gaming-keyboard-1 next"
+		"format-gr": "GR"
 	},
 
 	"hyprland/window": {
@@ -62,14 +64,6 @@
 		"format": "",
 		"on-click": "wlogout",
 		"tooltip": false
-	},
-
-	"custom/vpn": {
-		"format": "{}",
-		"exec": "(ssh -f server@192.168.1.2 mullvad status | grep -q Connected && echo '') || echo ''",
-		"on-click": "(ssh -f server@192.168.1.2 mullvad status | grep -q Connected && ssh -f server@192.168.1.2 mullvad disconnect) || ssh -f server@192.168.1.2 mullvad connect",
-		"return-type": "{}",
-		"interval": 1
 	},
 
 	"custom/separator": {

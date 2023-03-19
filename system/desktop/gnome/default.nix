@@ -12,6 +12,7 @@
 	services.xserver.desktopManager.gnome.enable = config.desktop-environment.gnome.enable; # Install gnome
 
 	programs.dconf.enable = config.desktop-environment.gnome.enable;
+	#programs.dconf.enable = true;
 
 	environment.systemPackages = with pkgs; lib.mkIf config.desktop-environment.gnome.enable [
 		gnome.dconf-editor # Edit gnome's dconf
