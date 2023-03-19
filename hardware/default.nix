@@ -12,16 +12,7 @@
 {
 	hardware = {
 		opengl = {
-			extraPackages = with pkgs; [
-        rocm-opencl-icd
-        rocm-opencl-runtime
-        mesa
-        libva
-        libva-utils
-        libvdpau-va-gl
-				vulkan
-				vulkan-tools
-      ];
+			extraPackages = with pkgs; [ rocm-opencl-icd rocm-opencl-runtime libva libva-utils libvdpau-va-gl vulkan-tools ];
 			enable = true;
 			driSupport32Bit = true;
 			driSupport = true; # Support Direct Rendering for 32-bit applications (such as Wine) on 64-bit systems
