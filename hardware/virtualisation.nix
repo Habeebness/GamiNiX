@@ -14,12 +14,12 @@
 		docker # Containers
 		distrobox # Wrapper around docker to create and start linux containers
 		spice
-    spice-gtk
-    spice-vdagent
-    spice-protocol
-    virt-manager # Gui for QEMU/KVM Virtualisation 
+		spice-gtk
+		spice-vdagent
+		spice-protocol
+		virt-manager # Gui for QEMU/KVM Virtualisation 
 		looking-glass-client # VM client
-    win-virtio
-    win-spice
+		win-virtio
+		win-spice
 	];
 }
