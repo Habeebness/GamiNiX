@@ -28,6 +28,23 @@
 		bluetooth.enable = true;
 		uinput.enable = true; # Enable uinput support
 	};
+  
+
+	fileSystems."/run/media/iggut/gamedisk" =
+    { device = "/dev/disk/by-uuid/9E049FCD049FA735";  # Windows game drive nvme
+      fsType = "ntfs";
+			options = [
+      "uid=1000"
+      "gid=1000"
+      "rw"
+      "user"
+      "exec"
+      "umask=000"
+			];
+    };
+
+  # Set CPU Governor
+  powerManagement.cpuFreqGovernor = "ondemand";
 
 	#environment.systemPackages = lib.mkIf (config.laptop.enable && config.nvidia.enable) [ nvidia-offload ]; # Use nvidia-offload to launch programs using the nvidia GPU
 
@@ -53,7 +70,14 @@
 		"v4l2loopback" # Virtual camera
 		"xpadneo"
 		"uinput"
+		"overlay"
+		"fuse" # Disable case-sensitivity in file names
 	];
+
+  # Disable case-sensitivity in file names
+  boot.extraModprobeConfig = ''
+    options fuse allow_other 
+  '';
 
 	#fileSystems = lib.mkIf config.boot.btrfs-compression.enable {
 	#	"/".options = [ "compress=zstd" ];

@@ -2,7 +2,8 @@
 { pkgs, config, ... }:
 
 {
-	boot.kernelPackages = pkgs.linuxPackages_zen; # Use ZEN linux kernel
+	#boot.kernelPackages = pkgs.linuxPackages_zen; # Use ZEN linux kernel
+	boot.kernelPackages = pkgs.linuxPackages_xanmod_latest; # Latest Xanmod Kernel
 
 	environment.systemPackages = with pkgs; [
 		#(callPackage ./self-built/system-monitoring-center.nix { buildPythonApplication = pkgs.python3Packages.buildPythonApplication; fetchPypi = pkgs.python3Packages.fetchPypi; pygobject3 = pkgs.python3Packages.pygobject3; }) # Task manager
@@ -44,9 +45,16 @@
 		winetricks # Wine prefix settings manager
 		woeusb # Windows ISO Burner
 		xorg.xhost # Use x.org server with distrobox
-		zenstates # Ryzen CPU controller
+		#zenstates # Ryzen CPU controller
 		zerotierone # Virtual lan network
 		google-chrome # Hate it and love it Browser
+		libxkbcommon
+    alsaLib
+		libpulseaudio
+		libgpgerror
+    libgcrypt
+	  libbsd
+		libdrm
 	];
 
 	users.defaultUserShell = pkgs.zsh; # Use ZSH shell for all users
@@ -100,6 +108,7 @@
 		openssh.enable = true;
 		mullvad-vpn.enable = true;
 	};
+  
 
 	# Symlink files and folders to /etc
 	environment.etc."rnnoise-plugin/librnnoise_ladspa.so".source = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
@@ -111,11 +120,16 @@
     XDG_CONFIG_HOME = "\${HOME}/.config";
     XDG_BIN_HOME    = "\${HOME}/.local/bin";
     XDG_DATA_HOME   = "\${HOME}/.local/share";
+		CARGO_HOME = "\${HOME}/.cargo";
+    CARGO_BIN = "\${HOME}/.cargo/bin";
+    GLFW_IM_MODULE = "ibus";
     # Steam needs this to find Proton-GE
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
     # note: this doesn't replace PATH, it just adds this to it
     PATH = [ 
       "\${XDG_BIN_HOME}"
+			"\${CARGO_BIN}"
+      "\${CARGO_HOME}"
     ];
   };
 }

@@ -40,7 +40,8 @@
 			wdisplays # Displays manager
 			wl-clipboard # Clipboard daemon
 			wlogout # Logout screen
-			swww # wallpaper
+			swww # Wallpaper
+			eww-wayland #Widgets and bars
 		];
 
 		etc = {

@@ -2,8 +2,40 @@
 { config, pkgs, lib, inputs, ... }:
 
 lib.mkIf config.main.user.enable {
+	programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
+  nixpkgs.config.packageOverrides = pkgs: {
+    steam = pkgs.steam.override {
+      extraPkgs = pkgs: with pkgs; [
+        libgdiplus
+        zulu
+				gtk3
+        zlib
+        dbus
+        freetype
+        glib
+        atk
+        cairo
+				mono
+        gdk-pixbuf
+        pango
+        fontconfig
+				gnutls # needed for Halo MCC
+				stdenv.cc.cc.lib
+				SDL2
+				icu63
+				libtensorflow
+				fontconfig
+      ];
+    };
+  };
+
 	users.users.${config.main.user.username}.packages = with pkgs; lib.mkIf config.main.user.enable [
 		bottles # Wine manager
+		spotify # Viva la musica
 		duckstation # PS1 Emulator
 		gamescope # Wayland microcompositor
 		godot_4 # Game engine
@@ -17,10 +49,11 @@ lib.mkIf config.main.user.enable {
 		rpcs3 # PS3 Emulator
 		ryujinx # Switch Emulator
 		scanmem # Cheat engine for linux
-		steam # Gaming platform
+		#steam # Gaming platform
 		steamtinkerlaunch # General tweaks for games
 		stremio # Straming platform
 		sunshine # Remote gaming
+		prusa-slicer # 3D printer slicer software
 	];
 
 	services.input-remapper.enable = config.main.user.enable;
