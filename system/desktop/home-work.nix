@@ -57,6 +57,8 @@ lib.mkIf config.work.user.enable {
 					"application/x-bittorrent" = [ "de.haeckerfelix.Fragments.desktop" ];
 					"application/x-ms-dos-executable" = [ "wine.desktop" ];
 					"application/zip" = [ "org.gnome.FileRoller.desktop" ];
+					"image/jpeg" = [ "org.gnome.gThumb.desktop" ];
+					"image/avif"= [ "org.gnome.gThumb.desktop" ];
 					"image/png" = [ "org.gnome.gThumb.desktop" ];
 					"text/plain" = [ "sublime_text.desktop" ];
 					"video/mp4" = [ "mpv.desktop" ];

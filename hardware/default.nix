@@ -65,14 +65,18 @@
 	#		value = "2147483648";
 	#	}
 	#];
+  boot = {
+		kernelModules = [
+			"v4l2loopback" # Virtual camera
+			"xpadneo"
+			"uinput"
+			"overlay"
+		  "fuse" # Disable case-sensitivity in file names
+		];
 
-	boot.kernelModules = [
-		"v4l2loopback" # Virtual camera
-		"xpadneo"
-		"uinput"
-		"overlay"
-		"fuse" # Disable case-sensitivity in file names
-	];
+		extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+	};
+	
 
   # Disable case-sensitivity in file names
   boot.extraModprobeConfig = ''

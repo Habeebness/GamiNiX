@@ -34,7 +34,6 @@
 			pavucontrol # Sound manager
 			polkit_gnome # Polkit manager
 			rofi-wayland # App launcher
-			nwg-drawer # Sexy App launcher
 			slurp # Monitor selector
 			swappy # Edit screenshots
 			wdisplays # Displays manager
@@ -42,6 +41,7 @@
 			wlogout # Logout screen
 			swww # Wallpaper
 			eww-wayland #Widgets and bars
+			xdg-utils
 		];
 
 		etc = {

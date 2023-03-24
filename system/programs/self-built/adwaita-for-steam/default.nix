@@ -2,13 +2,13 @@
 
 stdenvNoCC.mkDerivation rec {
 	name = "adwaita-for-steam";
-	version = "0.32";
+	version = "0.35";
 
 	src = fetchFromGitHub {
 		owner = "tkashkin";
 		repo = "Adwaita-for-Steam";
 		rev = "v${version}";
-		sha256 = "t7ipAyiLe1WVMxB/FC1xF369rQ8WFNEQybPkOkSgx9o=";
+		sha256 = "l0wSLPPwIEo4wkTs/Jt9ov4ATYuu92wl5pohKVneQAI=";
 	};
 
 	preferLocalBuild = true;
@@ -19,6 +19,6 @@ stdenvNoCC.mkDerivation rec {
 
 	installPhase = ''
 		mkdir -p $out
-		NIX_OUT="$out" python install.py -w full
+		NIX_OUT="$out" python install.py
 	'';
 }

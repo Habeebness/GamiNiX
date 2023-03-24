@@ -2,13 +2,10 @@
 { pkgs, config, ... }:
 
 {
-	#boot.kernelPackages = pkgs.linuxPackages_zen; # Use ZEN linux kernel
-	boot.kernelPackages = pkgs.linuxPackages_xanmod_latest; # Latest Xanmod Kernel
-
 	environment.systemPackages = with pkgs; [
 		#(callPackage ./self-built/system-monitoring-center.nix { buildPythonApplication = pkgs.python3Packages.buildPythonApplication; fetchPypi = pkgs.python3Packages.fetchPypi; pygobject3 = pkgs.python3Packages.pygobject3; }) # Task manager
 		(callPackage ./self-built/apx.nix {}) # Package manager using distrobox
-		(callPackage ./self-built/webcord { electron = pkgs.electron_21; }) # An open source discord client
+		(callPackage ./self-built/webcord {}) # An open source discord client
 		android-tools # Tools for debugging android devices
 		appimage-run # Appimage runner
 		aria # Terminal downloader with multiple connections support
@@ -36,7 +33,7 @@
 		rnix-lsp # Nix language server
 		rnnoise-plugin # A real-time noise suppression plugin
 		signal-desktop # Encrypted messaging platform
-		#sublime4 # Text editor
+		sublime4 # Text editor
 		tree # Display folder content at a tree format
 		unrar # Support opening rar files
 		vscodium # All purpose IDE
@@ -47,14 +44,6 @@
 		xorg.xhost # Use x.org server with distrobox
 		#zenstates # Ryzen CPU controller
 		zerotierone # Virtual lan network
-		google-chrome # Hate it and love it Browser
-		libxkbcommon
-    alsaLib
-		libpulseaudio
-		libgpgerror
-    libgcrypt
-	  libbsd
-		libdrm
 	];
 
 	users.defaultUserShell = pkgs.zsh; # Use ZSH shell for all users
@@ -91,7 +80,7 @@
 				server="ssh server@192.168.1.2"; # Connect to local server
 				ssh="TERM=xterm-256color ssh"; # SSH with colors
 				steam-link="killall steam 2> /dev/null ; while ps axg | grep -vw grep | grep -w steam > /dev/null; do sleep 1; done && (nohup steam -pipewire > /dev/null &) 2> /dev/null"; # Kill existing steam process and relaunch steam with the pipewire flag
-				update="(cd $(head -1 /etc/nixos/.configuration-location) 2> /dev/null || (echo 'Configuration path is invalid. Run rebuild.sh manually to update the path!' && false) && sudo nix flake update && bash rebuild.sh) ; (apx --aur upgrade) ; (bash ~/.config/zsh/proton-ge-updater.sh)"; # Update everything
+				update="(cd $(head -1 /etc/nixos/.configuration-location) 2> /dev/null || (echo 'Configuration path is invalid. Run rebuild.sh manually to update the path!' && false) && sudo nix flake update && bash rebuild.sh) ; (apx --aur upgrade) ; (bash ~/.config/zsh/proton-ge-updater.sh) ; (bash ~/.config/zsh/steam-library-patcher.sh)"; # Update everything
 				vpn-btop="ssh -t server@192.168.1.2 'bpytop'"; # Show VPN bpytop
 				vpn-off="ssh -f server@192.168.1.2 'mullvad disconnect && sleep 1 && mullvad status'"; # Disconnect from VPN
 				vpn-on="ssh -f server@192.168.1.2 'mullvad connect && sleep 1 && mullvad status'"; # Connect to VPN
@@ -103,33 +92,34 @@
 
 		gamemode.enable = true;
 	};
-
+  
 	services = {
 		openssh.enable = true;
 		mullvad-vpn.enable = true;
 	};
   
-
+  #boot.kernelPackages = pkgs.linuxPackages_zen; # Use ZEN linux kernel
+	boot.kernelPackages = pkgs.linuxPackages_xanmod_latest; # Latest Xanmod Kernel
 	# Symlink files and folders to /etc
 	environment.etc."rnnoise-plugin/librnnoise_ladspa.so".source = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
 	environment.etc."proton-ge-nix".source = "${(pkgs.callPackage self-built/proton-ge.nix {})}/";
 	environment.etc."apx/config.json".source = "${(pkgs.callPackage self-built/apx.nix {})}/etc/apx/config.json";
 	#environment 
-  environment.sessionVariables = rec {
-    XDG_CACHE_HOME  = "\${HOME}/.cache";
-    XDG_CONFIG_HOME = "\${HOME}/.config";
-    XDG_BIN_HOME    = "\${HOME}/.local/bin";
-    XDG_DATA_HOME   = "\${HOME}/.local/share";
-		CARGO_HOME = "\${HOME}/.cargo";
-    CARGO_BIN = "\${HOME}/.cargo/bin";
-    GLFW_IM_MODULE = "ibus";
-    # Steam needs this to find Proton-GE
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
-    # note: this doesn't replace PATH, it just adds this to it
-    PATH = [ 
-      "\${XDG_BIN_HOME}"
-			"\${CARGO_BIN}"
-      "\${CARGO_HOME}"
-    ];
-  };
+  #environment.sessionVariables = rec {
+  #  XDG_CACHE_HOME  = "\${HOME}/.cache";
+  #  XDG_CONFIG_HOME = "\${HOME}/.config";
+  #  XDG_BIN_HOME    = "\${HOME}/.local/bin";
+  #  XDG_DATA_HOME   = "\${HOME}/.local/share";
+	#	CARGO_HOME = "\${HOME}/.cargo";
+  #  CARGO_BIN = "\${HOME}/.cargo/bin";
+  #  GLFW_IM_MODULE = "ibus";
+  #  # Steam needs this to find Proton-GE
+  #  STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
+  #  # note: this doesn't replace PATH, it just adds this to it
+  #  PATH = [ 
+  #    "\${XDG_BIN_HOME}"
+	#		"\${CARGO_BIN}"
+  #    "\${CARGO_HOME}"
+  #  ];
+  #};
 }

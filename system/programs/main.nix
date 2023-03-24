@@ -25,6 +25,7 @@ lib.mkIf config.main.user.enable {
         fontconfig
 				gnutls # needed for Halo MCC
 				stdenv.cc.cc.lib
+				gamescope # Wayland microcompositor
 				SDL2
 				icu63
 				libtensorflow
@@ -37,7 +38,6 @@ lib.mkIf config.main.user.enable {
 		bottles # Wine manager
 		spotify # Viva la musica
 		duckstation # PS1 Emulator
-		gamescope # Wayland microcompositor
 		godot_4 # Game engine
 		heroic # Epic Games Launcher for Linux
 		input-remapper # Remap input device controls
