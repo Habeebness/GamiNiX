@@ -3,6 +3,10 @@
 , fetchFromGitHub
 , meson
 , ninja
+, cmake
+, libpulseaudio
+, libmpdclient
+, libxkbcommon
 , pkgconfig
 , json_c
 , gtk3
@@ -24,13 +28,18 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     meson
     ninja
+    cmake
     pkgconfig
   ];
 
   buildInputs = [
     json_c
+    libpulseaudio
+    libmpdclient
+    libxkbcommon
     gtk-layer-shell
     gtk3
+    glib #
   ];
 
   mesonFlags = [

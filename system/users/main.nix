@@ -8,7 +8,16 @@ lib.mkIf config.main.user.enable {
 		password = "1"; # Default password used for first login, change later with passwd
 		isNormalUser = true;
 		description = "${config.main.user.description}";
-		extraGroups = [ "networkmanager" "wheel" "kvm" "docker" "libvirtd" ];
+		extraGroups = [ 
+			"wheel" 
+			"libvirtd" 
+			"kvm" 
+			"qemu-libvirtd" 
+			"audio" 
+			"networkmanager" 
+			"video" 
+			"docker" 
+		];
 	};
 
 	home-manager.users.${config.main.user.username}.home = {

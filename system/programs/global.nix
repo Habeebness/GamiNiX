@@ -6,11 +6,14 @@
 		#(callPackage ./self-built/system-monitoring-center.nix { buildPythonApplication = pkgs.python3Packages.buildPythonApplication; fetchPypi = pkgs.python3Packages.fetchPypi; pygobject3 = pkgs.python3Packages.pygobject3; }) # Task manager
 		(callPackage ./self-built/apx.nix {}) # Package manager using distrobox
 		(callPackage ./self-built/webcord {}) # An open source discord client
+		(callPackage ./self-built/usbreset {}) # USBreset
+		(pkgs.wrapOBS {plugins = with pkgs.obs-studio-plugins; [obs-pipewire-audio-capture];}) # Pipewire audio plugin for OBS Studio
 		android-tools # Tools for debugging android devices
 		appimage-run # Appimage runner
 		aria # Terminal downloader with multiple connections support
 		bat # Better cat command
 		btop # System monitor
+		discord
 		cinnamon.warpinator # Local file sync
 		direnv # Unclutter your .profile
 		efibootmgr # Edit EFI entries
@@ -23,6 +26,11 @@
 		kitty # Terminal
 		lsd # Better ls command
 		mpv # Video player
+		vlc # Video player
+		neofetch # pc info
+		libnotify # Send desktop notifications
+		bc
+		pciutils # I need me some lspci
 		mullvad-vpn # VPN Client
 		ntfs3g # Support NTFS drives
 		obs-studio # Recording/Livestream
@@ -38,6 +46,7 @@
 		unrar # Support opening rar files
 		vscodium # All purpose IDE
 		wget # Terminal downloader
+		lutris # Windows gaming
 		wine # Compatibility layer capable of running Windows applications
 		winetricks # Wine prefix settings manager
 		woeusb # Windows ISO Burner
@@ -100,6 +109,7 @@
   
   #boot.kernelPackages = pkgs.linuxPackages_zen; # Use ZEN linux kernel
 	boot.kernelPackages = pkgs.linuxPackages_xanmod_latest; # Latest Xanmod Kernel
+	environment.sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
 	# Symlink files and folders to /etc
 	environment.etc."rnnoise-plugin/librnnoise_ladspa.so".source = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
 	environment.etc."proton-ge-nix".source = "${(pkgs.callPackage self-built/proton-ge.nix {})}/";

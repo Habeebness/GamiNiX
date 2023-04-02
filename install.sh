@@ -37,11 +37,15 @@ then
 			# Remove potentially generated firefox profiles ini before building the nix configuration
 			echo "Removing firefox profiles ini for $user..."
 			sudo rm -rf /home/$user/.mozilla/firefox/profiles.ini 2> /dev/null
+            sudo rm -rf /home/$user/.config/mimeapps.list 2> /dev/null
+            #sudo rm -rf /home/$user/.config/hypr/hyprland.conf 2> /dev/null
+            #sudo rm -rf /home/$user/.config/hypr/scripts/wallpaper.sh 2> /dev/null
+            #sudo rm -rf /home/$user/.config/sfwbar/sfwbar.config 2> /dev/null
 		done <<< "$USERS"
 	fi
 
 	# Build the configuration
-	sudo nixos-rebuild switch
+	sudo nixos-rebuild switch 
 
 	if [ -f "$HOME/.nix-successful-build" ]; then
 		echo "Nix generation was successful!"

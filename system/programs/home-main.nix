@@ -85,12 +85,14 @@ lib.mkIf config.main.user.enable {
 			".config/zsh/proton-ge-updater.sh" = {
 				source = ../scripts/proton-ge-updater.sh;
 				recursive = true;
+				force = true;
 			};
       
 			# Add steam-library-patcher to zsh directory
 			".config/zsh/steam-library-patcher.sh" = {
 				source = ../scripts/steam-library-patcher.sh;
 				recursive = true;
+				force = true;
 			};
 			
 			# Add arkenfox user.js
@@ -104,48 +106,56 @@ lib.mkIf config.main.user.enable {
 					'';
 				}))}/user.js";
 				recursive = true;
+				force = true;
 			};
 
 			# Set firefox to privacy profile
 			".mozilla/firefox/profiles.ini" = lib.mkIf config.firefox-privacy.enable {
 				source = ../configs/firefox-profiles.ini;
 				recursive = true;
+				force = true;
 			};
 
 			# Add noise suppression microphone
 			".config/pipewire/pipewire.conf.d/99-input-denoising.conf" = {
 				source = ../configs/pipewire.conf;
 				recursive = true;
+				force = true;
 			};
 
 			# Add btop config
 			".config/btop/btop.conf" = {
 				source = ../configs/btop.conf;
 				recursive = true;
+				force = true;
 			};
 
 			# Add kitty session config
 			".config/kitty/kitty.session" = {
 				source = ../configs/kitty.session;
 				recursive = true;
+				force = true;
 			};
 
 			# Add kitty task managers session config
 			".config/kitty/kitty-task-managers.session" = {
 				source = ../configs/kitty-task-managers.session;
 				recursive = true;
+				force = true;
 			};
 
 			# Add adwaita steam skin
 			".local/share/Steam/skins/Adwaita" = {
 				source = "${(pkgs.callPackage ../programs/self-built/adwaita-for-steam {})}/build/Adwaita";
 				recursive = true;
+				force = true;
 			};
 
 			# Enable steam beta
 			".local/share/Steam/package/beta" = lib.mkIf config.steam.beta.enable {
 				text = "publicbeta";
 				recursive = true;
+				force = true;
 			};
 			# Add custom mangohud config for CS:GO
 			".config/MangoHud/csgo_linux64.conf" =  {
@@ -169,6 +179,7 @@ lib.mkIf config.main.user.enable {
 					vsync=1
 				'';
 				recursive = true;
+				force = true;
 			};
 		};
 	};
