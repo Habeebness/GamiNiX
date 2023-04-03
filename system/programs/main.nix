@@ -49,7 +49,6 @@ lib.mkIf config.main.user.enable {
 		rpcs3 # PS3 Emulator
 		ryujinx # Switch Emulator
 		scanmem # Cheat engine for linux
-		#steam # Gaming platform
 		steamtinkerlaunch # General tweaks for games
 		stremio # Straming platform
 		sunshine # Remote gaming

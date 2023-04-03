@@ -7,13 +7,14 @@
 		(callPackage ./self-built/apx.nix {}) # Package manager using distrobox
 		(callPackage ./self-built/webcord {}) # An open source discord client
 		(callPackage ./self-built/usbreset {}) # USBreset
+		(callPackage ./self-built/screenaudio-mic {}) # Passthrough pipewire audio to WebRTC screenshare
 		(pkgs.wrapOBS {plugins = with pkgs.obs-studio-plugins; [obs-pipewire-audio-capture];}) # Pipewire audio plugin for OBS Studio
 		android-tools # Tools for debugging android devices
 		appimage-run # Appimage runner
 		aria # Terminal downloader with multiple connections support
 		bat # Better cat command
 		btop # System monitor
-		discord
+		discord # Chat client
 		cinnamon.warpinator # Local file sync
 		direnv # Unclutter your .profile
 		efibootmgr # Edit EFI entries
@@ -54,7 +55,7 @@
 		#zenstates # Ryzen CPU controller
 		zerotierone # Virtual lan network
 	];
-
+  
 	users.defaultUserShell = pkgs.zsh; # Use ZSH shell for all users
 
 	programs = {

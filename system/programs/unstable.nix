@@ -7,12 +7,12 @@ let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in {
 	environment.systemPackages = with pkgs; [
-		(callPackage ./self-built/sfwbar {}) # status bar - wayland
-		#(callPackage ./self-built/usbreset {}) # USBreset
+		#(callPackage ./gamescope.nix {}) # Wayland microcompositor
+		(callPackage ./self-built/sfwbar {}) # Status bar for Wayland
+		pkgs.gamescope # Wayland microcompositor
 		google-chrome # Hate it and love it Browser
-		nwg-drawer # Sexy App launcher
-		nwg-menu
-		gamescope
+		nwg-drawer # Sexy app launcher
+		nwg-menu # Sexy app menu
 		libxkbcommon
     alsaLib
 		libpulseaudio
@@ -21,7 +21,11 @@ in {
 	  libbsd
 		libdrm
 	];
+	
+
 
 
 
 }
+
+

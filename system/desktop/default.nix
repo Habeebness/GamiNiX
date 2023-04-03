@@ -66,7 +66,14 @@
 	};
 
 	security.sudo.extraConfig = "Defaults pwfeedback"; # Show asterisks when typing sudo password
+  security.wrappers.gamescope = {
+        owner = "root";
+        group = "root";
+        capabilities = "cap_sys_nice=eip";
+        source = "${pkgs.gamescope}/bin/gamescope";
+  };
 
+	
 	environment = {
 		sessionVariables = {
 			QT_QPA_PLATFORMTHEME= "gnome"; # Use gtk theme for qt apps

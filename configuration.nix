@@ -12,7 +12,7 @@
 		#./hardware/amd/ryzen.nix
 		./hardware/intel.nix
 		#./hardware/laptop.nix
-		#./hardware/mounts.nix # Disks to mount on startup
+		./hardware/mounts.nix # Disks to mount on startup
 		#./hardware/nvidia.nix
 		./hardware/virtualisation.nix
 		./system/desktop
@@ -20,6 +20,7 @@
 		./system/desktop/hyprland
 		./system/programs
 		./system/users
+		./system/programs/gamescope.nix
 	];
 
 	config.system.stateVersion = "22.05"; # Do not change without checking the docs
