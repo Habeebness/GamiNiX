@@ -3,61 +3,60 @@
 
 {
 	environment.systemPackages = with pkgs; [
-		#(callPackage ./self-built/system-monitoring-center.nix { buildPythonApplication = pkgs.python3Packages.buildPythonApplication; fetchPypi = pkgs.python3Packages.fetchPypi; pygobject3 = pkgs.python3Packages.pygobject3; }) # Task manager
-		(callPackage ./self-built/apx.nix {}) # Package manager using distrobox
-		(callPackage ./self-built/webcord {}) # An open source discord client
-		(callPackage ./self-built/usbreset {}) # USBreset
-		(callPackage ./self-built/screenaudio-mic {}) # Passthrough pipewire audio to WebRTC screenshare
-		(pkgs.wrapOBS {plugins = with pkgs.obs-studio-plugins; [obs-pipewire-audio-capture];}) # Pipewire audio plugin for OBS Studio
-		android-tools # Tools for debugging android devices
-		appimage-run # Appimage runner
-		aria # Terminal downloader with multiple connections support
-		bat # Better cat command
-		btop # System monitor
-		discord # Chat client
-		cinnamon.warpinator # Local file sync
-		direnv # Unclutter your .profile
-		efibootmgr # Edit EFI entries
-		firefox # Browser
-		gimp # Image editor
-		git # Distributed version control system
-		gping # ping with a graph
-		helvum # Pipewire patchbay
-		killall # Tool to kill all programs matching process name
-		kitty # Terminal
-		lsd # Better ls command
-		mpv # Video player
-		vlc # Video player
-		neofetch # pc info
-		libnotify # Send desktop notifications
-		bc
-		pciutils # I need me some lspci
-		mullvad-vpn # VPN Client
-		ntfs3g # Support NTFS drives
-		obs-studio # Recording/Livestream
-		onlyoffice-bin # Microsoft Office alternative for Linux
-		p7zip # 7zip
-		python3 # Python
-		ranger # Terminal file manager
-		rnix-lsp # Nix language server
-		rnnoise-plugin # A real-time noise suppression plugin
-		signal-desktop # Encrypted messaging platform
-		sublime4 # Text editor
-		tree # Display folder content at a tree format
-		unrar # Support opening rar files
-		vscodium # All purpose IDE
-		wget # Terminal downloader
-		lutris # Windows gaming
-		wine # Compatibility layer capable of running Windows applications
-		winetricks # Wine prefix settings manager
-		woeusb # Windows ISO Burner
-		xorg.xhost # Use x.org server with distrobox
-		#zenstates # Ryzen CPU controller
-		zerotierone # Virtual lan network
+		(callPackage ./self-built/apx.nix {})                                                  								# Package manager using distrobox
+		(callPackage ./self-built/webcord {})                                                  								# An open source discord client
+		(callPackage ./self-built/usbreset {})                                                 								# USBreset
+		(firefox.override { extraNativeMessagingHosts = [ (callPackage ./self-built/pipewire-screenaudio {}) ]; }) 			# Browser
+		(pkgs.wrapOBS {plugins = with pkgs.obs-studio-plugins; [obs-pipewire-audio-capture];}) 								# Pipewire audio plugin for OBS Studio
+		android-tools           # Tools for debugging android devices
+		appimage-run            # Appimage runner
+		aria                    # Terminal downloader with multiple connections support
+		bat                     # Better cat command
+		btop                    # System monitor
+		discord                 # Chat client
+		cinnamon.warpinator     # Local file sync
+		direnv                  # Unclutter your .profile
+		efibootmgr              # Edit EFI entries
+		firefox                 # Browser
+		gimp                    # Image editor
+		git                     # Distributed version control system
+		gping                   # ping with a graph
+		helvum                  # Pipewire patchbay
+		killall                 # Tool to kill all programs matching process name
+		kitty                   # Terminal
+		lsd                     # Better ls command
+		mpv                     # Video player
+		vlc                     # Video player
+		neofetch                # pc info
+		libnotify               # Send desktop notifications
+		bc                      # Arbitrary precision calculator language
+		pciutils                # I need me some lspci
+		mullvad-vpn             # VPN Client
+		ntfs3g                  # Support NTFS drives
+		obs-studio              # Recording/Livestream
+		onlyoffice-bin          # Microsoft Office alternative for Linux
+		p7zip                   # 7zip
+		python3                 # Python
+		ranger                  # Terminal file manager
+		rnix-lsp                # Nix language server
+		rnnoise-plugin          # A real-time noise suppression plugin
+		signal-desktop          # Encrypted messaging platform
+		sublime4                # Text editor
+		tree                    # Display folder content at a tree format
+		unrar                   # Support opening rar files
+		vscodium                # All purpose IDE
+		wget                    # Terminal downloader
+		lutris                  # Windows gaming
+		pulseaudio              # Sound server for Linux-based systems
+		wine                    # Compatibility layer capable of running Windows applications
+		winetricks              # Wine prefix settings manager
+		woeusb                  # Windows ISO Burner
+		xorg.xhost              # Use x.org server with distrobox
+		zerotierone             # Virtual lan network
 	];
   
 	users.defaultUserShell = pkgs.zsh; # Use ZSH shell for all users
-
+  
 	programs = {
 		zsh = {
 			enable = true;
@@ -108,29 +107,12 @@
 		mullvad-vpn.enable = true;
 	};
   
-  #boot.kernelPackages = pkgs.linuxPackages_zen; # Use ZEN linux kernel
+
 	boot.kernelPackages = pkgs.linuxPackages_xanmod_latest; # Latest Xanmod Kernel
-	environment.sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
+
 	# Symlink files and folders to /etc
 	environment.etc."rnnoise-plugin/librnnoise_ladspa.so".source = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
 	environment.etc."proton-ge-nix".source = "${(pkgs.callPackage self-built/proton-ge.nix {})}/";
 	environment.etc."apx/config.json".source = "${(pkgs.callPackage self-built/apx.nix {})}/etc/apx/config.json";
-	#environment 
-  #environment.sessionVariables = rec {
-  #  XDG_CACHE_HOME  = "\${HOME}/.cache";
-  #  XDG_CONFIG_HOME = "\${HOME}/.config";
-  #  XDG_BIN_HOME    = "\${HOME}/.local/bin";
-  #  XDG_DATA_HOME   = "\${HOME}/.local/share";
-	#	CARGO_HOME = "\${HOME}/.cargo";
-  #  CARGO_BIN = "\${HOME}/.cargo/bin";
-  #  GLFW_IM_MODULE = "ibus";
-  #  # Steam needs this to find Proton-GE
-  #  STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
-  #  # note: this doesn't replace PATH, it just adds this to it
-  #  PATH = [ 
-  #    "\${XDG_BIN_HOME}"
-	#		"\${CARGO_BIN}"
-  #    "\${CARGO_HOME}"
-  #  ];
-  #};
+
 }
