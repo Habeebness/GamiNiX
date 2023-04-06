@@ -15,6 +15,7 @@
 		btop                    # System monitor
 		discord                 # Chat client
 		cinnamon.warpinator     # Local file sync
+		curtail 				# Image compressor
 		direnv                  # Unclutter your .profile
 		efibootmgr              # Edit EFI entries
 		firefox                 # Browser
