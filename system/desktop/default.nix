@@ -12,12 +12,12 @@
 
 	# Set your locale settings
 	i18n = {
-		defaultLocale = "en_US.utf8";
-		extraLocaleSettings.LC_MEASUREMENT = "en_CA.utf8";
-		extraLocaleSettings.LC_MONETARY = "en_CA.utf8";
-    extraLocaleSettings.LC_PAPER = "en_CA.utf8";
-    extraLocaleSettings.LC_TIME = "en_CA.utf8";
-    extraLocaleSettings.LC_NUMERIC = "en_CA.utf8";
+	  defaultLocale = "en_US.utf8";
+	  extraLocaleSettings.LC_MEASUREMENT = "en_CA.utf8";
+	  extraLocaleSettings.LC_MONETARY = "en_CA.utf8";
+      extraLocaleSettings.LC_PAPER = "en_CA.utf8";
+      extraLocaleSettings.LC_TIME = "en_CA.utf8";
+      extraLocaleSettings.LC_NUMERIC = "en_CA.utf8";
 	};
 
 	services = {
@@ -69,7 +69,7 @@
   security.wrappers.gamescope = {
         owner = "root";
         group = "root";
-        capabilities = "cap_sys_nice=eip";
+        capabilities = "cap_sys_nice+ep";
         source = "${pkgs.gamescope}/bin/gamescope";
   };
 
