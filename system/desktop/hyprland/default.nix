@@ -8,7 +8,7 @@
 
 	programs = lib.mkIf config.desktop-environment.hyprland.enable {
     nm-applet.enable = true;       # Network manager tray icon
-    #kdeconnect.enable = true;      # Connect phone to PC
+    kdeconnect.enable = true;      # Connect phone to PC
   };
 
 	environment = lib.mkIf config.desktop-environment.hyprland.enable {
