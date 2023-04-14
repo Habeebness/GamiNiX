@@ -75,7 +75,7 @@
       # These are the defaults, and xdg.enable does set them, but due to load
       # order, they're not set before environment.variables are set, which could
       # cause race conditions.
-			QT_QPA_PLATFORMTHEME= "gtk2"; 					# Use gtk2 theme for qt apps
+			QT_QPA_PLATFORMTHEME= "gnome"; 					# Use gtk theme for qt apps
       XDG_CACHE_HOME = "$HOME/.cache";
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_DATA_HOME = "$HOME/.local/share";
