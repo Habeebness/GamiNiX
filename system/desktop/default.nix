@@ -75,12 +75,27 @@
       # These are the defaults, and xdg.enable does set them, but due to load
       # order, they're not set before environment.variables are set, which could
       # cause race conditions.
-			QT_QPA_PLATFORMTHEME= "gnome"; 					# Use gtk theme for qt apps
+			QT_QPA_PLATFORMTHEME= "gtk2"; 					# Use gtk2 theme for qt apps
       XDG_CACHE_HOME = "$HOME/.cache";
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_DATA_HOME = "$HOME/.local/share";
       XDG_BIN_HOME = "$HOME/.local/bin";
 			DEFAULT_BROWSER="${pkgs.google-chrome-beta}/bin/google-chrome-beta";
+			CLUTTER_BACKEND = "wayland";
+      XDG_SESSION_TYPE = "wayland";
+      QT_QPA_PLATFORM = "wayland";
+      SDL_VIDEODRIVER = "wayland";
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      MOZ_ENABLE_WAYLAND = "1";
+      WLR_NO_HARDWARE_CURSORS = "1";
+      WLR_BACKEND = "vulkan";
+      XDG_SESSION_DESKTOP = "Hyprland";
+      # Fix for some Java AWT applications (e.g. Android Studio),
+      # use this if they aren't displayed properly:
+      _JAVA_AWT_WM_NONREPARENTING = "1";
+      # Better Wayland support for Electron-based apps
+      # https://discourse.nixos.org/t/partly-overriding-a-desktop-entry/20743/2?u=ziedak
+      NIXOS_OZONE_WL = "1";
     };
     variables = {
       # Conform more programs to XDG conventions. The rest are handled by their
