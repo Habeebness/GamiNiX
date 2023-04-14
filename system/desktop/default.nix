@@ -12,18 +12,15 @@
 	# Set your locale settings
 	i18n = {
 		defaultLocale = "en_US.UTF-8";
-		extraLocaleSettings.LC_MESSAGES = "en_US.UTF-8";
-		extraLocaleSettings.LC_CTYPE = "en_US.UTF-8";
-		extraLocaleSettings.LC_TIME = "en_GB.UTF-8";
-		extraLocaleSettings.LC_NUMERIC = "en_US.UTF-8";
-		extraLocaleSettings.LC_PAPER = "en_US.UTF-8";
-		extraLocaleSettings.LC_TELEPHONE = "en_US.UTF-8";
-		extraLocaleSettings.LC_MONETARY = "en_US.UTF-8";
-		extraLocaleSettings.LC_ADDRESS = "en_US.UTF-8";
-		extraLocaleSettings.LC_MEASUREMENT = "en_US.UTF-8";
-		extraLocaleSettings.LC_COLLATE="en_US.UTF-8";
-		extraLocaleSettings.LC_NAME="en_US.UTF-8";
-		extraLocaleSettings.LC_IDENTIFICATION="en_US.UTF-8";
+		extraLocaleSettings = {
+			LANGUAGE = "en_US.UTF-8";
+			LC_ALL = "en_US.UTF-8";
+    };
+		supportedLocales = [
+      "C.UTF-8/UTF-8"
+      "en_CA.UTF-8/UTF-8"
+      "en_US.UTF-8/UTF-8"
+    ];
 	};
 
 	services = {
@@ -82,7 +79,7 @@
       # These are the defaults, and xdg.enable does set them, but due to load
       # order, they're not set before environment.variables are set, which could
       # cause race conditions.
-			QT_QPA_PLATFORMTHEME= "gnome"; 					# Use gtk theme for qt apps
+			QT_QPA_PLATFORMTHEME= "gnome"; 					# Use gtk2 theme for qt apps
       XDG_CACHE_HOME = "$HOME/.cache";
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_DATA_HOME = "$HOME/.local/share";
@@ -145,10 +142,10 @@
   };
 
 	fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "NerdFontsSymbolsOnly" ]; }) 	# Override nerd fonts
-		meslo-lgs-nf 																																	# Meslo font
-		cantarell-fonts 																															# Cantarell font
-		jetbrains-mono 																																# Jetbrains Mono font
-		font-awesome 																																	# Font Awesome font
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
+		meslo-lgs-nf 
+		cantarell-fonts 
+		jetbrains-mono 
+		font-awesome 
   ];
 }
