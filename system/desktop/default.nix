@@ -11,12 +11,19 @@
 
 	# Set your locale settings
 	i18n = {
-		defaultLocale = "en_US.utf8";
-		extraLocaleSettings.LC_MEASUREMENT = "en_CA.utf8";
-		extraLocaleSettings.LC_MONETARY = "en_CA.utf8";
-    extraLocaleSettings.LC_PAPER = "en_CA.utf8";
-    extraLocaleSettings.LC_TIME = "en_CA.utf8";
-    extraLocaleSettings.LC_NUMERIC = "en_CA.utf8";
+		defaultLocale = "en_US.UTF-8";
+		extraLocaleSettings.LC_MESSAGES = mkDefault "en_US.UTF-8";
+		extraLocaleSettings.LC_CTYPE = mkDefault "en_US.UTF-8";
+		extraLocaleSettings.LC_TIME = mkDefault "en_GB.UTF-8";
+		extraLocaleSettings.LC_NUMERIC = mkDefault "en_US.UTF-8";
+		extraLocaleSettings.LC_PAPER = mkDefault "en_US.UTF-8";
+		extraLocaleSettings.LC_TELEPHONE = mkDefault "en_US.UTF-8";
+		extraLocaleSettings.LC_MONETARY = mkDefault "en_US.UTF-8";
+		extraLocaleSettings.LC_ADDRESS = mkDefault "en_US.UTF-8";
+		extraLocaleSettings.LC_MEASUREMENT = mkDefault "en_US.UTF-8";
+		extraLocaleSettings.LC_COLLATE="en_US.UTF-8";
+		extraLocaleSettings.LC_NAME="en_US.UTF-8";
+		extraLocaleSettings.LC_IDENTIFICATION="en_US.UTF-8";
 	};
 
 	services = {
@@ -138,10 +145,10 @@
   };
 
 	fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
-		meslo-lgs-nf 
-		cantarell-fonts 
-		jetbrains-mono 
-		font-awesome 
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "NerdFontsSymbolsOnly" ]; }) 	# Override nerd fonts
+		meslo-lgs-nf 																																	# Meslo font
+		cantarell-fonts 																															# Cantarell font
+		jetbrains-mono 																																# Jetbrains Mono font
+		font-awesome 																																	# Font Awesome font
   ];
 }
