@@ -2,6 +2,7 @@
 
 {
 	boot = {
+		kernelParams = [ "clearcpuid=514" ]; # Fixes certain wine games crash on launch
 		loader = {
 			# Allows discovery of UEFI disks
 			efi = {

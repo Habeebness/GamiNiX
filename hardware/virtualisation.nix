@@ -19,6 +19,7 @@ in {
 
 		kernelParams = [ 
 		  "intel_iommu=on"
+			"nowatchdog"
 			"preempt=voluntary"
 			"iommu.passthrough=1"
 			"intel_iommu=igfx_off"
@@ -29,7 +30,7 @@ in {
 			"quiet"
       "kvm.ignore_msrs=1"
 			"kvm.report_ignored_msrs=0"
-      "splash"
+      "split_lock_detect=off" # https://www.phoronix.com/news/Linux-Splitlock-Hurts-Gaming
 	  ];
 
 		initrd.kernelModules = [ 
@@ -43,6 +44,7 @@ in {
 			"nvidia" 
 			"nouveau" 
 		];
+
 	};
   
 
@@ -51,26 +53,22 @@ in {
 		softdep nouveau pre: vfio-pci
     softdep snd_hda_intel pre: vfio-pci 
     options vfio_pci disable_vga=1
-    options vfio-pci ids=10de:2482,10de:228b
-    options kvm ignore_msrs=1
   '';
 
   services.udev.extraRules = ''SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"'';
 	programs.dconf.enable = true;
 	systemd.tmpfiles.rules = [ "f /dev/shm/looking-glass 0666 iggut kvm -" ];
-
+  environment.sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
 	environment.systemPackages = with pkgs; lib.mkIf config.virtualisation-settings.docker.enable [
-		#pkgs.linuxKernel.packages.linux_xanmod_latest.kvmfr
-		docker # Containers
-		distrobox # Wrapper around docker to create and start linux containers
-		spice
-		spice-gtk
-		spice-vdagent
-		spice-protocol
-		virt-manager # Gui for QEMU/KVM Virtualisation 
-		#looking-glass-client # VM client
-		win-virtio
-		win-spice
+	  docker 						# Containers - Used to create and run containers
+		distrobox 				# Wrapper around docker to create and start linux containers - Tool for creating and managing Linux containers using Docker
+		spice 						# Protocol for remote access to virtual machines - Protocol used for remote access to virtual machines
+		spice-gtk 				# Gtk library for spice protocol - Gtk library for the Spice protocol
+		spice-vdagent 		# Agent for spice protocol - Agent for the Spice protocol
+		spice-protocol 		# Protocol for remote access to virtual machines - Protocol used for remote access to virtual machines
+		virt-manager 			# Gui for QEMU/KVM Virtualisation - Graphical user interface for managing QEMU/KVM virtual machines
+		win-virtio 				# Windows driver for virtio devices - Windows driver for Virtio devices
+		win-spice 				# Windows driver for spice protocol - Windows driver for the Spice protocol
 	];
 
 	virtualisation = {

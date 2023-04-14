@@ -2,6 +2,7 @@
 
 lib.mkIf config.main.user.enable {
 	home-manager.users.${config.main.user.username} = {
+		services.kdeconnect.enable = true;
 		gtk = {
 			# Change GTK themes
 			enable = true;
@@ -46,6 +47,11 @@ lib.mkIf config.main.user.enable {
 
 				defaultApplications = {
 					"application/x-bittorrent" = [ "de.haeckerfelix.Fragments.desktop" ];
+					"text/html" = [ "google-chrome-beta.desktop" ];
+          "x-scheme-handler/http" = [ "google-chrome-beta.desktop" ];
+          "x-scheme-handler/https" = [ "google-chrome-beta.desktop" ];
+          "x-scheme-handler/about" = [ "google-chrome-beta.desktop" ];
+          "x-scheme-handler/unknown" = [ "google-chrome-beta.desktop" ];
 					"application/x-ms-dos-executable" = [ "wine.desktop" ];
 					"application/zip" = [ "org.gnome.FileRoller.desktop" ];
 					"image/jpeg" = [ "org.gnome.gThumb.desktop" ];

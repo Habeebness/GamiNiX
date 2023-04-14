@@ -2,14 +2,12 @@
 
 {
 	imports = [
-		# Auto-generated configuration by NixOS
 		./hardware-configuration.nix
 		# Custom configuration
 		./.nix
 		./bootloader
 		./hardware # Enable various hardware capabilities
 		./hardware/amd/radeon.nix
-		#./hardware/amd/ryzen.nix
 		./hardware/intel.nix
 		#./hardware/laptop.nix
 		./hardware/mounts.nix # Disks to mount on startup
@@ -20,8 +18,7 @@
 		./system/desktop/hyprland
 		./system/programs
 		./system/users
-		./system/programs/gamescope.nix
 	];
-
+  
 	config.system.stateVersion = "22.05"; # Do not change without checking the docs
 }

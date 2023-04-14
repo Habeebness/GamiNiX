@@ -5,11 +5,8 @@
 		./unstable.nix
 		# Packages installed for main user
 		./main.nix
-		# Packages installed for work user
-		#./work.nix
 		# Home manager specific stuff
 		./home-main.nix
-		#./home-work.nix
 	];
 
 	nix = {

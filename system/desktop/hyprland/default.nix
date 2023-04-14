@@ -3,7 +3,6 @@
 {
 	imports = [
 		./home-main.nix
-		./home-work.nix
 	]; # Setup home manager for hyprland
 
 	programs = lib.mkIf config.desktop-environment.hyprland.enable {
@@ -12,7 +11,7 @@
   };
 
 	environment = lib.mkIf config.desktop-environment.hyprland.enable {
-	  systemPackages = with pkgs; [
+		systemPackages = with pkgs; [
 			# Status bar
 			(waybar.overrideAttrs (oldAttrs: {
 				mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
@@ -20,33 +19,33 @@
 					sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
 				'';
 			}))
-        baobab                      # Disk usage analyser
-        blueberry                   # Bluetooth manager
-        clipman                     # Clipboard manager for wayland
-        dunst                       # Notification daemon
-        gnome.file-roller           # Archive file manager
-        gnome.gnome-calculator      # Calculator
-        gnome.gnome-disk-utility    # Disks manager
-        gnome.gnome-themes-extra    # Adwaita GTK theme
-        gnome.nautilus              # File manager
-        grim                        # Screenshot tool
-        jq                          # JSON parser
-        playerctl                   # mpris controller
-        brightnessctl               # Adjust screen brightness
-        pamixer                     # PulseAudio mixer
-        networkmanagerapplet        # Network manager tray icon
-        pavucontrol                 # Sound manager
-        polkit_gnome                # Polkit manager
-        rofi-wayland                # App launcher
-        slurp                       # Monitor selector
-        swappy                      # Edit screenshots
-        wdisplays                   # Displays manager
-        wl-clipboard                # Clipboard daemon
-        wlogout                     # Logout screen
-        swww                        # Wallpaper
-        eww-wayland                 # Widgets and bars
-  	    xdg-utils                   # Utility commands for the desktop environment
-	  ];
+      baobab                      # Disk usage analyser
+      blueberry                   # Bluetooth manager
+      clipman                     # Clipboard manager for wayland
+      dunst                       # Notification daemon
+      gnome.file-roller           # Archive file manager
+      gnome.gnome-calculator      # Calculator
+      gnome.gnome-disk-utility    # Disks manager
+      gnome.gnome-themes-extra    # Adwaita GTK theme
+      gnome.nautilus              # File manager
+      grim                        # Screenshot tool
+      jq                          # JSON parser
+      playerctl                   # mpris controller
+      brightnessctl               # Adjust screen brightness
+      pamixer                     # PulseAudio mixer
+      networkmanagerapplet        # Network manager tray icon
+      pavucontrol                 # Sound manager
+      polkit_gnome                # Polkit manager
+      rofi-wayland                # App launcher
+      slurp                       # Monitor selector
+      swappy                      # Edit screenshots
+      wdisplays                   # Displays manager
+      wl-clipboard                # Clipboard daemon
+      wlogout                     # Logout screen
+      swww                        # Wallpaper
+      eww-wayland                 # Widgets and bars
+			xdg-utils                   # Utility commands for the desktop environment
+		];
     
 		# Configure system services
 		etc = {
@@ -61,4 +60,6 @@
 	};
 
 	security.polkit.enable = lib.mkIf config.desktop-environment.hyprland.enable true; # Enable polkit security
+
+  disabledModules = [ "programs/hyprland.nix" ]; # Needed for hyprland flake
 }

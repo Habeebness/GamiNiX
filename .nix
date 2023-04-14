@@ -10,13 +10,13 @@
 		boot = {
 			animation.enable = lib.mkOption {
 				type = lib.types.bool;
-				default = false;
+				default = true;
 			}; # Hides startup text and displays a circular loading icon
 
 			autologin = {
 				enable = lib.mkOption {
 					type = lib.types.bool;
-					default = true;
+					default = false;
 				};
 
 				main.user.enable = lib.mkOption {
@@ -25,15 +25,15 @@
 				}; # If false, defaults to work user
 			};
 
-			windows-entry = lib.mkOption {
-				type = lib.types.str;
-				default = "0000";
-			}; # Used for rebooting to windows with efibootmgr
+		    #windows-entry = lib.mkOption {
+			    #type = lib.types.str;
+			    #default = "0000";
+			  #}; # Used for rebooting to windows with efibootmgr
 
-			btrfs-compression.enable = lib.mkOption {
-				type = lib.types.bool;
-				default = true;
-			}; # Btrfs compression
+			  #btrfs-compression.enable = lib.mkOption {
+			    #type = lib.types.bool;
+			    #default = true;
+			  #}; # Btrfs compression
 		};
 
 		# Declare users
@@ -45,23 +45,23 @@
 
 			username = lib.mkOption {
 				type = lib.types.str;
-				default = "icedborn";
+				default = "iggut";
 			};
 
 			description = lib.mkOption {
 				type = lib.types.str;
-				default = "IceDBorn";
+				default = "Igor Gu";
 			};
 
 			github = {
 				username = lib.mkOption {
 					type = lib.types.str;
-					default = "IceDBorn";
+					default = "IgguT";
 				};
 
 				email = lib.mkOption {
 					type = lib.types.str;
-					default = "github.envenomed@dralias.com";
+					default = "igor.gutchin@gmail.com";
 				};
 			};
 		};
@@ -85,12 +85,12 @@
 			github = {
 				username = lib.mkOption {
 					type = lib.types.str;
-					default = "IceDBorn";
+					default = "IgguT";
 				};
 
 				email = lib.mkOption {
 					type = lib.types.str;
-					default = "github.envenomed@dralias.com";
+					default = "igor.gutchin@gmail.com";
 				};
 			};
 		};
@@ -100,25 +100,6 @@
 				type = lib.types.bool;
 				default = true;
 			};
-
-			cpu = {
-				enable = lib.mkOption {
-					type = lib.types.bool;
-					default = true;
-				};
-
-				undervolt = {
-					enable = lib.mkOption {
-						type = lib.types.bool;
-						default = true;
-					};
-
-					value = lib.mkOption {
-						type = lib.types.str;
-						default = "-p 0 -v 30 -f A8"; # Pstate 0, 1.25 voltage, 4200 clock speed
-					};
-				};
-			};
 		};
 
 		nvidia = {
@@ -127,27 +108,17 @@
 				default = false;
 			};
 
-			power-limit = {
-				enable = lib.mkOption {
-					type = lib.types.bool;
-					default = true;
-				};
 
-				value = lib.mkOption {
-					type = lib.types.str;
-					default = "242"; # RTX 3070
-				};
-			};
 
 			patch.enable = lib.mkOption {
 				type = lib.types.bool;
-				default = true;
+				default = false;
 			};
 		};
 
 		intel.enable = lib.mkOption {
 			type = lib.types.bool;
-			default = false;
+			default = true;
 		};
 
 		laptop.enable = lib.mkOption {
@@ -168,7 +139,7 @@
 
 			lxd.enable = lib.mkOption {
 				type = lib.types.bool;
-				default = true;
+				default = false;
 			}; # Container daemon
 
 			spiceUSBRedirection.enable = lib.mkOption {

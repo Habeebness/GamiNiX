@@ -3,19 +3,20 @@
 
 {
 	environment.systemPackages = with pkgs; [
-		(callPackage ./self-built/apx.nix {})                                                  								# Package manager using distrobox
-		(callPackage ./self-built/webcord {})                                                  								# An open source discord client
-		(callPackage ./self-built/usbreset {})                                                 								# USBreset
-		(firefox.override { extraNativeMessagingHosts = [ (callPackage ./self-built/pipewire-screenaudio {}) ]; }) 			# Browser
-		(pkgs.wrapOBS {plugins = with pkgs.obs-studio-plugins; [obs-pipewire-audio-capture];}) 								# Pipewire audio plugin for OBS Studio
+		(callPackage ./self-built/apx.nix {})                                                  											# Package manager using distrobox
+		(callPackage ./self-built/webcord {})                                                  											# An open source discord client
+		(callPackage ./self-built/usbreset {})                                                 											# USBreset
+		(firefox.override { extraNativeMessagingHosts = [ (callPackage ./self-built/pipewire-screenaudio {}) ]; }) 	# Browser
+		(pkgs.wrapOBS {plugins = with pkgs.obs-studio-plugins; [obs-pipewire-audio-capture];}) 											# Pipewire audio plugin for OBS Studio
 		android-tools           # Tools for debugging android devices
 		appimage-run            # Appimage runner
+		samba4Full 							# Samba server to share files/printers with windows
 		aria                    # Terminal downloader with multiple connections support
 		bat                     # Better cat command
 		btop                    # System monitor
 		discord                 # Chat client
 		cinnamon.warpinator     # Local file sync
-		curtail 				# Image compressor
+		curtail 								# Image compressor
 		direnv                  # Unclutter your .profile
 		efibootmgr              # Edit EFI entries
 		firefox                 # Browser
@@ -59,6 +60,7 @@
 	users.defaultUserShell = pkgs.zsh; # Use ZSH shell for all users
   
 	programs = {
+		
 		zsh = {
 			enable = true;
 			# Enable oh my zsh and it's plugins
@@ -84,6 +86,7 @@
 				ls="lsd"; # Better ls command
 				mva="rsync -rP --remove-source-files"; # Move command with details
 				ping="gping"; # ping with a graph
+				nix-gc="nix-store --gc"; # Garbace collect for the nix store
 				#reboot-windows="sudo efibootmgr --bootnext ${config.boot.windows-entry} && reboot"; # Reboot to windows
 				rebuild="(cd $(head -1 /etc/nixos/.configuration-location) 2> /dev/null || (echo 'Configuration path is invalid. Run rebuild.sh manually to update the path!' && false) && bash rebuild.sh)"; # Rebuild the system configuration
 				restart-pipewire="systemctl --user restart pipewire"; # Restart pipewire
@@ -100,7 +103,7 @@
 			interactiveShellInit = "source ~/.config/zsh/zsh-theme.zsh\nunsetopt PROMPT_SP"; # Commands to run on zsh shell initialization
 		};
 
-		gamemode.enable = true;
+		
 	};
   
 	services = {

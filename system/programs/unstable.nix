@@ -9,8 +9,7 @@ in {
 
 	environment.systemPackages = with pkgs; [
     (callPackage ./self-built/sfwbar {})    # Status bar for Wayland
-    gamescope                               # Wayland microcompositor
-    google-chrome                           # Hate it and love it Browser
+    google-chrome-beta                      # Hate it and love it Browser
     nwg-drawer                              # Sexy app launcher
     nwg-menu                                # Sexy app menu
     libxkbcommon                            # Keyboard handling library for X11 and Wayland
@@ -27,7 +26,5 @@ in {
 
 
 }
-
-
 
 

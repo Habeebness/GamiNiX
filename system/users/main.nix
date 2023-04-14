@@ -16,7 +16,8 @@ lib.mkIf config.main.user.enable {
 			"audio" 
 			"networkmanager" 
 			"video" 
-			"docker" 
+			"docker"
+			"media" 
 		];
 	};
 

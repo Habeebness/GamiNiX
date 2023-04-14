@@ -76,15 +76,29 @@
 			"overlay"
 		  "fuse" # Disable case-sensitivity in file names
 		];
-
+		#postBootCommands = ''
+    #  modprobe -r nvidiafb
+    #  modprobe -r nouveau
+    
+    #  echo 0 > /sys/class/vtconsole/vtcon0/bind
+    #  echo 0 > /sys/class/vtconsole/vtcon1/bind
+    #  echo efi-framebuffer.0 > /sys/bus/platform/drivers/efiframebuffer/unbind
+ 
+    #  DEVS="0000:08:00.0 0000:08:00.1"
+ 
+    #  for DEV in $DEVS; do
+    #    echo "vfio-pci" > /sys/bus/pci/devices/$DEV/driver_override
+    #  done
+    #  modprobe -i vfio-pci
+    #'';
+		# Disable case-sensitivity in file names
+		extraModprobeConfig = ''
+      options fuse allow_other 
+    '';
 		extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
 	};
 	
 
-  # Disable case-sensitivity in file names
-  boot.extraModprobeConfig = ''
-    options fuse allow_other 
-  '';
 
 	#fileSystems = lib.mkIf config.boot.btrfs-compression.enable {
 	#	"/".options = [ "compress=zstd" ];
