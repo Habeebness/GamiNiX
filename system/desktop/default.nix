@@ -132,6 +132,7 @@
 			pitivi 											# Video editor
 			qgnomeplatform 							# Use GTK theme for QT apps
 			tela-icon-theme 						# Icon theme
+			mpvpaper										# Play videos with mpv as your wallpaper
 		];
 
     # Move ~/.Xauthority out of $HOME (setting XAUTHORITY early isn't enough)
