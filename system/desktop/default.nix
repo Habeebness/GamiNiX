@@ -12,15 +12,15 @@
 	# Set your locale settings
 	i18n = {
 		defaultLocale = "en_US.UTF-8";
-		extraLocaleSettings.LC_MESSAGES = mkDefault "en_US.UTF-8";
-		extraLocaleSettings.LC_CTYPE = mkDefault "en_US.UTF-8";
-		extraLocaleSettings.LC_TIME = mkDefault "en_GB.UTF-8";
-		extraLocaleSettings.LC_NUMERIC = mkDefault "en_US.UTF-8";
-		extraLocaleSettings.LC_PAPER = mkDefault "en_US.UTF-8";
-		extraLocaleSettings.LC_TELEPHONE = mkDefault "en_US.UTF-8";
-		extraLocaleSettings.LC_MONETARY = mkDefault "en_US.UTF-8";
-		extraLocaleSettings.LC_ADDRESS = mkDefault "en_US.UTF-8";
-		extraLocaleSettings.LC_MEASUREMENT = mkDefault "en_US.UTF-8";
+		extraLocaleSettings.LC_MESSAGES = "en_US.UTF-8";
+		extraLocaleSettings.LC_CTYPE = "en_US.UTF-8";
+		extraLocaleSettings.LC_TIME = "en_GB.UTF-8";
+		extraLocaleSettings.LC_NUMERIC = "en_US.UTF-8";
+		extraLocaleSettings.LC_PAPER = "en_US.UTF-8";
+		extraLocaleSettings.LC_TELEPHONE = "en_US.UTF-8";
+		extraLocaleSettings.LC_MONETARY = "en_US.UTF-8";
+		extraLocaleSettings.LC_ADDRESS = "en_US.UTF-8";
+		extraLocaleSettings.LC_MEASUREMENT = "en_US.UTF-8";
 		extraLocaleSettings.LC_COLLATE="en_US.UTF-8";
 		extraLocaleSettings.LC_NAME="en_US.UTF-8";
 		extraLocaleSettings.LC_IDENTIFICATION="en_US.UTF-8";
