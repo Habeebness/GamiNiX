@@ -1,8 +1,8 @@
 {
-    "label" : "lock",
-    "action" : "swaylock",
-    "text" : "Lock",
-    "keybind" : "l"
+    "label" : "cancel",
+    "action" : "esc",
+    "text" : "Cancel",
+    "keybind" : "c"
 }
 {
     "label" : "hibernate",
