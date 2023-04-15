@@ -2,6 +2,8 @@
 
 lib.mkIf config.main.user.enable {
 	home-manager.users.${config.main.user.username} = lib.mkIf config.desktop-environment.hyprland.enable {
+
+
 		home.file = {
 			# Add hyprland config
 			".config/hypr/hyprland.conf" = {
@@ -10,9 +12,16 @@ lib.mkIf config.main.user.enable {
 				force = true;
 			};
 
-			# Add wallpaper change script
+			# Add wallpaper change script --swww
 			".config/hypr/scripts/wallpaper.sh" = {
 				source = ../../scripts/wallpaper.sh;
+				recursive = true;
+				force = true;
+			};
+			
+			# Add wallpaper change script --mpvpaper
+			".config/hypr/scripts/change-bg.sh" = {
+				source = ../../scripts/change-bg.sh;
 				recursive = true;
 				force = true;
 			};
@@ -66,6 +75,28 @@ lib.mkIf config.main.user.enable {
 			# Add sfwbar config
 			".config/sfwbar/" = {
 				source = ../../configs/sfwbar;
+				recursive = true;
+				force = true;
+			};
+
+      # Add video wallpapers
+			".config/hypr/bg/blackhole.webm" = {
+				source = ../../configs/bg/blackhole.webm;
+				recursive = true;
+				force = true;
+			};
+			".config/hypr/bg/dna.mp4" = {
+				source = ../../configs/bg/dna.mp4;
+				recursive = true;
+				force = true;
+			};
+			".config/hypr/bg/dna-vf-blu.webm" = {
+				source = ../../configs/bg/dna-vf-blu.webm;
+				recursive = true;
+				force = true;
+			};
+			".config/hypr/bg/record.mp4" = {
+				source = ../../configs/bg/record.mp4;
 				recursive = true;
 				force = true;
 			};

@@ -124,6 +124,7 @@
     };
 		# Packages to install for all window manager/desktop environments
 		systemPackages = with pkgs; [
+			ripgrep											# Search files for specific patterns of text
 			bibata-cursors 							# Material cursors
 			fragments 									# Bittorrent client following Gnome UI standards
 			gnome.adwaita-icon-theme 		# GTK theme

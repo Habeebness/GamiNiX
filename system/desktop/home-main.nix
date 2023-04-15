@@ -58,7 +58,7 @@ lib.mkIf config.main.user.enable {
 					"image/avif"= [ "org.gnome.gThumb.desktop" ];
 					"image/png" = [ "org.gnome.gThumb.desktop" ];
 					"text/plain" = [ "sublime_text.desktop" ];
-					"video/mp4" = [ "mpv.desktop" ];
+					"video/mp4" = [ "vlc.desktop" ];
 				};
 			}; # Default apps
 		};
