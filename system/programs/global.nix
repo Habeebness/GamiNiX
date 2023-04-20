@@ -2,12 +2,19 @@
 { pkgs, config, ... }:
 
 {
+	boot.kernelPackages = pkgs.linuxPackages_xanmod_latest; # Latest Xanmod Kernel
+
 	environment.systemPackages = with pkgs; [
 		(callPackage ./self-built/apx.nix {})                                                  											# Package manager using distrobox
 		(callPackage ./self-built/webcord {})                                                  											# An open source discord client
-		(callPackage ./self-built/usbreset {})                                                 											# USBreset
 		(firefox.override { extraNativeMessagingHosts = [ (callPackage ./self-built/pipewire-screenaudio {}) ]; }) 	# Browser
 		(pkgs.wrapOBS {plugins = with pkgs.obs-studio-plugins; [obs-pipewire-audio-capture];}) 											# Pipewire audio plugin for OBS Studio
+    (callPackage ./self-built/sfwbar {})        # Status bar for Wayland
+    google-chrome-beta                          # Hate it and love it Browser
+    nwg-drawer                                  # Sexy app launcher
+    nwg-menu                                    # Sexy app menu
+    nwg-panel
+		glxinfo
 		android-tools           # Tools for debugging android devices
 		appimage-run            # Appimage runner
 		samba4Full 							# Samba server to share files/printers with windows
@@ -93,7 +100,8 @@
 				server="ssh server@192.168.1.2"; # Connect to local server
 				ssh="TERM=xterm-256color ssh"; # SSH with colors
 				steam-link="killall steam 2> /dev/null ; while ps axg | grep -vw grep | grep -w steam > /dev/null; do sleep 1; done && (nohup steam -pipewire > /dev/null &) 2> /dev/null"; # Kill existing steam process and relaunch steam with the pipewire flag
-				update="(cd $(head -1 /etc/nixos/.configuration-location) 2> /dev/null || (echo 'Configuration path is invalid. Run rebuild.sh manually to update the path!' && false) && sudo nix flake update && bash rebuild.sh) ; (apx --aur upgrade) ; (bash ~/.config/zsh/proton-ge-updater.sh) ; (bash ~/.config/zsh/steam-library-patcher.sh)"; # Update everything
+				updateall="(cd $(head -1 /etc/nixos/.configuration-location) 2> /dev/null || (echo 'Configuration path is invalid. Run rebuild.sh manually to update the path!' && false) && sudo nix flake update && bash rebuild.sh) ; (apx --aur upgrade) ; (bash ~/.config/zsh/proton-ge-updater.sh) ; (bash ~/.config/zsh/steam-library-patcher.sh)"; # Update everything
+				update="(apx --aur upgrade) ; (bash ~/.config/zsh/proton-ge-updater.sh) ; (bash ~/.config/zsh/steam-library-patcher.sh)"; 
 				vpn-btop="ssh -t server@192.168.1.2 'bpytop'"; # Show VPN bpytop
 				vpn-off="ssh -f server@192.168.1.2 'mullvad disconnect && sleep 1 && mullvad status'"; # Disconnect from VPN
 				vpn-on="ssh -f server@192.168.1.2 'mullvad connect && sleep 1 && mullvad status'"; # Connect to VPN
@@ -103,16 +111,13 @@
 			interactiveShellInit = "source ~/.config/zsh/zsh-theme.zsh\nunsetopt PROMPT_SP"; # Commands to run on zsh shell initialization
 		};
 
-		
+
 	};
   
 	services = {
 		openssh.enable = true;
 		mullvad-vpn.enable = true;
 	};
-  
-
-	boot.kernelPackages = pkgs.linuxPackages_xanmod_latest; # Latest Xanmod Kernel
 
 	# Symlink files and folders to /etc
 	environment.etc."rnnoise-plugin/librnnoise_ladspa.so".source = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";

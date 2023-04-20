@@ -2,7 +2,7 @@
 
 lib.mkIf config.amd.gpu.enable {
 	boot.initrd.kernelModules = [ "amdgpu" ]; # Use the amdgpu drivers upon boot
-  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
+
 	services.xserver.videoDrivers = [ "amdgpu" ];
 
 	programs.corectrl = {

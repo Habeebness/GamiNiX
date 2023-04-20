@@ -44,7 +44,7 @@
       wlogout                     # Logout screen
       swww                        # Wallpaper
       eww-wayland                 # Widgets and bars
-			xdg-utils                   # Utility commands for the desktop environment
+      mpvpaper										# Play videos with mpv as your wallpaper
 		];
     
 		# Configure system services

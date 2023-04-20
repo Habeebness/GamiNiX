@@ -17,15 +17,7 @@ lib.mkIf config.main.user.enable {
 			};
 		};
 
-		dconf.settings = {
-			"org/gnome/nautilus/preferences" = {
-				always-use-location-entry = true;
-			}; # Nautilus path bar is always editable
 
-			"org/gtk/gtk4/settings/file-chooser" = {
-				sort-directories-first = true;
-			}; # Nautilus sorts directories first
-		};
 
 		xdg = {
 			desktopEntries = {

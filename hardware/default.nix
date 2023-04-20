@@ -12,18 +12,18 @@
 {
 	hardware = {
 		opengl = {
-			extraPackages = with pkgs; [ 
-				rocm-opencl-icd 
-				rocm-opencl-runtime 
-				libva 
-				libva-utils 
-				libvdpau-va-gl 
-				vulkan-tools 
-				vaapiVdpau 
-				];
 			enable = true;
 			driSupport32Bit = true;
 			driSupport = true; # Support Direct Rendering for 32-bit applications (such as Wine) on 64-bit systems
+			extraPackages = with pkgs; [ 
+				rocm-opencl-icd 
+				rocm-opencl-runtime 
+				amdvlk
+				mesa.drivers
+			];
+			extraPackages32 = with pkgs; [ 
+				driversi686Linux.amdvlk
+			];
 		};
 
 		#nvidia = lib.mkIf (config.nvidia.enable && config.nvidia.patch.enable) {
@@ -44,10 +44,6 @@
 		uinput.enable = true; # Enable uinput support
 	};
   
-
-
-  # Set CPU Governor
-  powerManagement.cpuFreqGovernor = "ondemand";
 
 	#environment.systemPackages = lib.mkIf (config.laptop.enable && config.nvidia.enable) [ nvidia-offload ]; # Use nvidia-offload to launch programs using the nvidia GPU
 
@@ -70,11 +66,12 @@
 	#];
   boot = {
 		kernelModules = [
+			"kvm-intel"
+			"amdgpu"
 			"v4l2loopback" # Virtual camera
-			"xpadneo"
 			"uinput"
+		  "fuse"
 			"overlay"
-		  "fuse" # Disable case-sensitivity in file names
 		];
 		#postBootCommands = ''
     #  modprobe -r nvidiafb
@@ -84,18 +81,22 @@
     #  echo 0 > /sys/class/vtconsole/vtcon1/bind
     #  echo efi-framebuffer.0 > /sys/bus/platform/drivers/efiframebuffer/unbind
  
-    #  DEVS="0000:08:00.0 0000:08:00.1"
+    #  DEVS="0000:01:00.0 0000:01:00.1"
  
     #  for DEV in $DEVS; do
     #    echo "vfio-pci" > /sys/bus/pci/devices/$DEV/driver_override
     #  done
     #  modprobe -i vfio-pci
     #'';
-		# Disable case-sensitivity in file names
 		extraModprobeConfig = ''
       options fuse allow_other 
     '';
+		
+		kernelParams = [ "clearcpuid=514" ]; # Fixes certain wine games crash on launch
+
 		extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+
+		kernel.sysctl = { "vm.max_map_count" = 262144; }; # Fixes crash when loading maps in CS2
 	};
 	
 

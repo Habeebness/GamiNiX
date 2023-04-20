@@ -2,7 +2,7 @@
 	imports = [
 		# Packages installed for all users
 		./global.nix
-		./unstable.nix
+		./game.nix
 		# Packages installed for main user
 		./main.nix
 		# Home manager specific stuff

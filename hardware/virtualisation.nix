@@ -14,7 +14,6 @@ in {
 			"vfio_iommu_type1" 
 			"vfio" 
 			"kvm-intel"
-      "vfio_mdev"
 		];
 
 		kernelParams = [ 
@@ -48,27 +47,15 @@ in {
 	};
   
 
-  boot.extraModprobeConfig = ''
-	  softdep nvidia pre: vfio-pci
-		softdep nouveau pre: vfio-pci
-    softdep snd_hda_intel pre: vfio-pci 
-    options vfio_pci disable_vga=1
-  '';
 
   services.udev.extraRules = ''SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"'';
-	programs.dconf.enable = true;
+
 	systemd.tmpfiles.rules = [ "f /dev/shm/looking-glass 0666 iggut kvm -" ];
   environment.sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
 	environment.systemPackages = with pkgs; lib.mkIf config.virtualisation-settings.docker.enable [
 	  docker 						# Containers - Used to create and run containers
 		distrobox 				# Wrapper around docker to create and start linux containers - Tool for creating and managing Linux containers using Docker
-		spice 						# Protocol for remote access to virtual machines - Protocol used for remote access to virtual machines
-		spice-gtk 				# Gtk library for spice protocol - Gtk library for the Spice protocol
-		spice-vdagent 		# Agent for spice protocol - Agent for the Spice protocol
-		spice-protocol 		# Protocol for remote access to virtual machines - Protocol used for remote access to virtual machines
 		virt-manager 			# Gui for QEMU/KVM Virtualisation - Graphical user interface for managing QEMU/KVM virtual machines
-		win-virtio 				# Windows driver for virtio devices - Windows driver for Virtio devices
-		win-spice 				# Windows driver for spice protocol - Windows driver for the Spice protocol
 	];
 
 	virtualisation = {

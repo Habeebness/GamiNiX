@@ -69,10 +69,7 @@
 
 	security.sudo.extraConfig = "Defaults pwfeedback"; # Show asterisks when typing sudo password
 
-
-	### A tidy $HOME is a tidy mind
-  home-manager.users.${config.main.user.username}.xdg.enable = true;
-
+  programs.dconf.enable = true;
   environment = {
 		
     sessionVariables = {
@@ -80,51 +77,11 @@
       # order, they're not set before environment.variables are set, which could
       # cause race conditions.
 			QT_QPA_PLATFORMTHEME= "gnome"; 					# Use gtk2 theme for qt apps
-      XDG_CACHE_HOME = "$HOME/.cache";
-      XDG_CONFIG_HOME = "$HOME/.config";
-      XDG_DATA_HOME = "$HOME/.local/share";
-      XDG_BIN_HOME = "$HOME/.local/bin";
-			DEFAULT_BROWSER="${pkgs.google-chrome-beta}/bin/google-chrome-beta";
-			CLUTTER_BACKEND = "wayland";
-      XDG_SESSION_TYPE = "wayland";
-      QT_QPA_PLATFORM = "wayland";
-      SDL_VIDEODRIVER = "wayland";
-      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-      MOZ_ENABLE_WAYLAND = "1";
-      WLR_NO_HARDWARE_CURSORS = "1";
-      WLR_BACKEND = "vulkan";
-      XDG_SESSION_DESKTOP = "Hyprland";
-      # Fix for some Java AWT applications (e.g. Android Studio),
-      # use this if they aren't displayed properly:
-      _JAVA_AWT_WM_NONREPARENTING = "1";
-      # Better Wayland support for Electron-based apps
-      # https://discourse.nixos.org/t/partly-overriding-a-desktop-entry/20743/2?u=ziedak
       NIXOS_OZONE_WL = "1";
     };
-    variables = {
-      # Conform more programs to XDG conventions. The rest are handled by their
-      # respective modules.
-      __GL_SHADER_DISK_CACHE_PATH = "$XDG_CACHE_HOME/nv";
-      ASPELL_CONF = ''
-        per-conf $XDG_CONFIG_HOME/aspell/aspell.conf;
-        personal $XDG_CONFIG_HOME/aspell/en_US.pws;
-        repl $XDG_CONFIG_HOME/aspell/en.prepl;
-      '';
-      CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
-      HISTFILE = "$XDG_DATA_HOME/bash/history";
-      INPUTRC = "$XDG_CONFIG_HOME/readline/inputrc";
-      LESSHISTFILE = "$XDG_CACHE_HOME/lesshst";
 
-      # Tools I don't use
-      # SUBVERSION_HOME = "$XDG_CONFIG_HOME/subversion";
-      # BZRPATH         = "$XDG_CONFIG_HOME/bazaar";
-      # BZR_PLUGIN_PATH = "$XDG_DATA_HOME/bazaar";
-      # BZR_HOME        = "$XDG_CACHE_HOME/bazaar";
-      # ICEAUTHORITY    = "$XDG_CACHE_HOME/ICEauthority";
-    };
 		# Packages to install for all window manager/desktop environments
 		systemPackages = with pkgs; [
-			ripgrep											# Search files for specific patterns of text
 			bibata-cursors 							# Material cursors
 			fragments 									# Bittorrent client following Gnome UI standards
 			gnome.adwaita-icon-theme 		# GTK theme
@@ -133,7 +90,6 @@
 			pitivi 											# Video editor
 			qgnomeplatform 							# Use GTK theme for QT apps
 			tela-icon-theme 						# Icon theme
-			mpvpaper										# Play videos with mpv as your wallpaper
 		];
 
     # Move ~/.Xauthority out of $HOME (setting XAUTHORITY early isn't enough)

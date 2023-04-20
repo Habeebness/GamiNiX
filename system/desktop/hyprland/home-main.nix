@@ -59,6 +59,13 @@ lib.mkIf config.main.user.enable {
 				force = true;
 			};
 
+			# Add nwg-drawer config files
+			".config/nwg-drawer" = {
+				source = ../../configs/nwg-drawer;
+				recursive = true;
+				force = true;
+			};
+
 			# Add wlogout config files
 			".config/wlogout/layout" = {
 				source = ../../configs/wlogout/layout;

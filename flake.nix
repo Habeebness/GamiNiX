@@ -1,6 +1,9 @@
 {
 	inputs = {
-		hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+        url = "github:hyprwm/Hyprland";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 		nur.url = "github:nix-community/NUR";
 
@@ -21,7 +24,6 @@
 				hyprland.nixosModules.default
 				{ programs.hyprland.enable = true; }
 				./configuration.nix
-				./system/programs/self-built/game/game.nix # Steam, gamemode and gamescope working wogether
 			];
 		};
 	};

@@ -1,57 +1,53 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, meson
-, ninja
-, cmake
-, libpulseaudio
-, libmpdclient
-, libxkbcommon
-, pkgconfig
-, json_c
-, gtk3
-, glib
-, gtk-layer-shell
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  meson,
+  ninja,
+  pkgconfig,
+  wrapGAppsHook,
+  gtk3,
+  libpulseaudio,
+  libmpdclient,
+  libxkbcommon,
+  gtk-layer-shell,
+  json_c,
+  glib,
 }:
-
 stdenv.mkDerivation rec {
   pname = "sfwbar";
-  version = "1.0_beta9";
+  version = "git";
 
   src = fetchFromGitHub {
     owner = "LBCrion";
     repo = pname;
-    rev = "v${version}";
-    sha256 = "JXi9mBe0gD8Z8elA5WzkUwvLL0F3ZzX6+hyNnWjnILg=";
+    rev = "ec55880788f812c08b7991c039b6d4bada4132ab";
+    sha256 = "eg3NUrpaJjq/TmSKpC5ZpIVhYIFlrNzuhvm7SF/xRAA=";
   };
 
   nativeBuildInputs = [
     meson
     ninja
-    cmake
     pkgconfig
+    wrapGAppsHook
   ];
+  buildInputs = [gtk3 gtk-layer-shell json_c glib libpulseaudio libmpdclient libxkbcommon];
 
-  buildInputs = [
-    json_c
-    libpulseaudio
-    libmpdclient
-    libxkbcommon
-    gtk-layer-shell
-    gtk3
-    glib #
-  ];
-
+  #mesonFlags = [ -Dbsdctl=disabled ];
   mesonFlags = [
-    # TODO: https://github.com/NixOS/nixpkgs/issues/36468
-    "-Dc_args=-I${glib.dev}/include/gio-unix-2.0"
-  ];
+        "-Dbsdctl=disabled"
+      ];
+
+  doCheck = false;
+
+  postPatch = ''
+    sed -i 's|gio/gdesktopappinfo.h|gio-unix-2.0/gio/gdesktopappinfo.h|' src/scaleimage.c
+  '';
 
   meta = with lib; {
     description = "Sway Floating Window Bar";
     homepage = "https://github.com/LBCrion/sfwbar";
-    maintainers = with maintainers; [ phossil ];
-    platforms = [ "x86_64-linux" ];
-    license = licenses.gpl3Only;
+    license = licenses.lgpl21Plus;
+    platforms = platforms.unix;
   };
 }
