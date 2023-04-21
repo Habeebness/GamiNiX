@@ -7,15 +7,26 @@ This is a work in progress from a new NixOS user thanks to IceDBorn's files for 
 
 Testing: 
 
-Latest sfwbar	-working mostly (missing restore minimized windows)
-Gamescope		-Working to launch Big Picture (noticably smoother gaming)
-				-Not working from within steam (to fix)
+>-Latest sfwbar
+
+-working mostly (missing restore minimized windows)
+
+Gamescope
+
+	Working to launch Big Picture (noticably smoother gaming)
+	
+	Not working from within steam (to fix)
+				
 To do:
 
 Never stop learning, try to commit and doccument changes made to facilitate nix assimilation process. 
+
 				-Need to add Windows VM declarative (if possible? currently manually adding via virt-manager)
+				
 				-Set-up NVIDIA PRIME to offload rendering using:
+				
 					-3070ti when no windows VM is running to the AMD 6600XT
+					
 					-decide if this should be via command or hooks
 
 # Thank you @
