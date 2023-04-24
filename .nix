@@ -10,13 +10,13 @@
 		boot = {
 			animation.enable = lib.mkOption {
 				type = lib.types.bool;
-				default = true;
+				default = false;
 			}; # Hides startup text and displays a circular loading icon
 
 			autologin = {
 				enable = lib.mkOption {
 					type = lib.types.bool;
-					default = false;
+					default = true;
 				};
 
 				main.user.enable = lib.mkOption {
@@ -139,7 +139,7 @@
 
 			lxd.enable = lib.mkOption {
 				type = lib.types.bool;
-				default = false;
+				default = true;
 			}; # Container daemon
 
 			spiceUSBRedirection.enable = lib.mkOption {
@@ -157,7 +157,7 @@
 			gnome = {
 				enable = lib.mkOption {
 					type = lib.types.bool;
-					default = true;
+					default = false;
 				};
 
 				configuration = {
@@ -203,7 +203,7 @@
 
 		firefox-privacy.enable = lib.mkOption {
 			type = lib.types.bool;
-			default = true;
+			default = false;
 		};
 
 		steam.beta.enable = lib.mkOption {
