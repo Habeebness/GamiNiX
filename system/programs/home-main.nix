@@ -21,7 +21,7 @@ lib.mkIf config.main.user.enable {
 					hide_window_decorations = "yes";
 					update_check_interval = "0";
 				};
-				font.name = "Jetbrains Mono";
+				font.name = "JetBrainsMono Nerd Font";
 			};
 
 			mangohud = {
@@ -177,6 +177,40 @@ lib.mkIf config.main.user.enable {
 					position=top-right
 					toggle_fps_limit=Ctrl_L+Shift_L+F1
 					vsync=1
+				'';
+				recursive = true;
+				force = true;
+			};
+						# Add nvchad
+			".config/nvim" = {
+				source = "${(pkgs.callPackage ../programs/self-built/nvchad.nix {})}";
+				recursive = true;
+			};
+
+			".config/nvim/lua/custom/chadrc.lua" = {
+				text = ''
+					local M = {}
+					M.ui = {theme = 'onedark'}
+					M.plugins = 'custom.plugins'
+					return M
+				'';
+				recursive = true;
+				force = true;
+			};
+
+			".config/nvim/lua/custom/plugins.lua" = {
+				text = ''
+					local plugins = {
+						{
+							"nvim-lua/plenary.nvim",
+							lazy = false
+						},
+						{
+							"TimUntersberger/neogit",
+							lazy = false
+						}
+					}
+					return plugins
 				'';
 				recursive = true;
 				force = true;
