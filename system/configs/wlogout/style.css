@@ -1,43 +1,82 @@
 * {
 	background-image: none;
-}
+  }
 window {
-	background-color: rgba(12, 12, 12, 0);
+	background-color: rgba(0, 0, 0, 0.3);
 }
-
 button {
-    color: #FFFFFF;
-	background-color: rgba(12, 12, 12, 0.2);
+	color: #ffffff;
+	font-family: "JetBrainsMono Nerd Font";
+  
+	border-radius: 20px;
+	border-style: solid;
+	border-width: 1px;
+	margin: 6px;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 25%;
 }
-
-button:focus, button:active, button:hover {
-	background-color: #00000096;
+  
+button:hover {
+	background-color: #272626;
 	outline-style: none;
 }
 
-#cancel {
-    background-image: image(url("/etc/wlogout-icons/lock.png"), url("/etc/wlogout-icons/lock.png"));
+grid {
+	background-color: #2d2d2d;
+	border-style: solid;
+	border-radius: 30px;
+	margin: 200px 500px;
+	padding: 10px;
 }
+
+#lock,
+#logout,
+#suspend,
+#hibernate,
+#shutdown,
+#reboot {
+	opacity: 0.6;
+}
+  
+#lock {
+	background-image: image(url("/home/iggut/.config/wlogout/lock.png"));
+}
+#lock:hover {
+	background-image: image(url("/home/iggut/.config/wlogout/lock-hover.png"));
+}  
 
 #logout {
-    background-image: image(url("/etc/wlogout-icons/logout.png"), url("/etc/wlogout-icons/logout.png"));
+	background-image: image(url("/home/iggut/.config/wlogout/logout.png"));
 }
-
+#logout:hover {
+	background-image: image(url("/home/iggut/.config/wlogout/logout-hover.png"));
+}
+    
 #suspend {
-    background-image: image(url("/etc/wlogout-icons/suspend.png"), url("/etc/wlogout-icons/suspend.png"));
+	background-image: image(url("/home/iggut/.config/wlogout/sleep.png"));
 }
-
+#suspend:hover {
+	background-image: image(url("/home/iggut/.config/wlogout/sleep-hover.png"));
+}
+    
 #hibernate {
-    background-image: image(url("/etc/wlogout-icons/hibernate.png"), url("/etc/wlogout-icons/hibernate.png"));
+	background-image: image(url("/home/iggut/.config/wlogout/hibernate.png"));
 }
-
+#hibernate:hover {
+	background-image: image(url("/home/iggut/.config/wlogout/hibernate-hover.png"));
+}
+   
 #shutdown {
-    background-image: image(url("/etc/wlogout-icons/shutdown.png"), url("/etc/wlogout-icons/shutdown.png"));
+	background-image: image(url("/home/iggut/.config/wlogout/power.png"));
 }
-
+#shutdown:hover {
+	background-image: image(url("/home/iggut/.config/wlogout/power-hover.png"));
+}
+   
 #reboot {
-    background-image: image(url("/etc/wlogout-icons/reboot.png"), url("/etc/wlogout-icons/reboot.png"));
+	background-image: image(url("/home/iggut/.config/wlogout/restart.png"));
+}
+#reboot:hover {
+	background-image: image(url("/home/iggut/.config/wlogout/restart-hover.png"));
 }
