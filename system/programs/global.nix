@@ -11,10 +11,8 @@
 		(pkgs.wrapOBS {plugins = with pkgs.obs-studio-plugins; [obs-pipewire-audio-capture];}) 											# Pipewire audio plugin for OBS Studio
     (callPackage ./self-built/sfwbar {})        # Status bar for Wayland
     google-chrome-beta                          # Hate it and love it Browser
-    nwg-drawer                                  # Sexy app launcher
-    nwg-menu                                    # Sexy app menu
-    nwg-panel
-		glxinfo
+    nwg-panel								# Sexy status panel
+		glxinfo									# GL gpu info
 		android-tools           # Tools for debugging android devices
 		appimage-run            # Appimage runner
 		samba4Full 							# Samba server to share files/printers with windows
@@ -41,6 +39,7 @@
 		bc                      # Arbitrary precision calculator language
 		pciutils                # I need me some lspci
 		mullvad-vpn             # VPN Client
+		neovim 									# Terminal text editor
 		ntfs3g                  # Support NTFS drives
 		obs-studio              # Recording/Livestream
 		onlyoffice-bin          # Microsoft Office alternative for Linux
