@@ -12,9 +12,9 @@ lib.mkIf config.main.user.enable {
 				force = true;
 			};
 
-			# Add wallpaper change script --swww
-			".config/hypr/scripts/wallpaper.sh" = {
-				source = ../../scripts/wallpaper.sh;
+			# Add volume control script for bars
+			".config/hypr/scripts/volume" = {
+				source = ../../scripts/volume;
 				recursive = true;
 				force = true;
 			};
@@ -25,7 +25,7 @@ lib.mkIf config.main.user.enable {
 				recursive = true;
 				force = true;
 			};
-
+			
 			# Add waybar config files
 			".config/waybar/config" = {
 				source = ../../configs/waybar/config;
@@ -60,21 +60,20 @@ lib.mkIf config.main.user.enable {
 			};
 
 			# Add nwg-drawer config files
-			".config/nwg-drawer" = {
-				source = ../../configs/nwg-drawer;
+			".config/nwg-drawer/drawer.css" = {
+				source = ../../configs/nwg-drawer/drawer.css;
+				recursive = true;
+				force = true;
+			};
+			".config/nwg-drawer/desktop-directories" = {
+				source = ../../configs/nwg-drawer/desktop-directories;
 				recursive = true;
 				force = true;
 			};
 
 			# Add wlogout config files
-			".config/wlogout/layout" = {
-				source = ../../configs/wlogout/layout;
-				recursive = true;
-				force = true;
-			};
-
-			".config/wlogout/style.css" = {
-				source = ../../configs/wlogout/style.css;
+			".config/wlogout" = {
+				source = ../../configs/wlogout;
 				recursive = true;
 				force = true;
 			};
