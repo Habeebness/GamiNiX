@@ -6,7 +6,7 @@
   ];
 
   programs.steam.enable = true;
-
+  environment.sessionVariables = rec { STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d"; };
   # gamescope module (not yet merged nixos/nixpkgs#187507)
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
