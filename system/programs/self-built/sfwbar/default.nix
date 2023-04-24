@@ -17,12 +17,11 @@
 stdenv.mkDerivation rec {
   pname = "sfwbar";
   version = "git";
-
   src = fetchFromGitHub {
     owner = "LBCrion";
     repo = pname;
-    rev = "ec55880788f812c08b7991c039b6d4bada4132ab";
-    sha256 = "eg3NUrpaJjq/TmSKpC5ZpIVhYIFlrNzuhvm7SF/xRAA=";
+    rev = "08e4f2cab27de721201dc84ada549fc673b55436";
+    sha256 = "l906Y3T7fCBagzjFaL0J0VI54ku6OEosjHXZITCZlnA=";
   };
 
   nativeBuildInputs = [
@@ -31,12 +30,20 @@ stdenv.mkDerivation rec {
     pkgconfig
     wrapGAppsHook
   ];
-  buildInputs = [gtk3 gtk-layer-shell json_c glib libpulseaudio libmpdclient libxkbcommon];
 
-  #mesonFlags = [ -Dbsdctl=disabled ];
+  buildInputs = [
+    gtk3 
+    gtk-layer-shell 
+    json_c 
+    glib 
+    libpulseaudio 
+    libmpdclient 
+    libxkbcommon
+  ];
+
   mesonFlags = [
-        "-Dbsdctl=disabled"
-      ];
+    "-Dbsdctl=disabled"
+  ];
 
   doCheck = false;
 
