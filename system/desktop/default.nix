@@ -58,6 +58,8 @@
 		"autovt@tty1".enable = false;
 	};
 
+	services.gnome.gnome-keyring.enable = true;
+
 	sound.enable = true;
 	hardware.pulseaudio.enable = false;
 	security.rtkit.enable = true; # Enable service which hands out realtime scheduling priority to user processes on demand, required by pipewire
@@ -86,6 +88,8 @@
 			fragments 									# Bittorrent client following Gnome UI standards
 			gnome.adwaita-icon-theme 		# GTK theme
 			gnome.gnome-boxes 					# VM manager
+			gnome.gucharmap							# Gnome char map 
+			gnome.gnome-keyring					# Gnome keyring 
 			gthumb 											# Image viewer
 			pitivi 											# Video editor
 			qgnomeplatform 							# Use GTK theme for QT apps
