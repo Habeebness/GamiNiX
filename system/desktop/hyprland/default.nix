@@ -35,6 +35,8 @@
       pamixer                     # PulseAudio mixer
       networkmanagerapplet        # Network manager tray icon
       pavucontrol                 # Sound manager
+      nwg-drawer                  # Sexy app launcher
+      nwg-menu                    # Sexy app menu
       polkit_gnome                # Polkit manager
       rofi-wayland                # App launcher
       slurp                       # Monitor selector
