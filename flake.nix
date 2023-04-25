@@ -1,9 +1,6 @@
 {
 	inputs = {
-    hyprland = {
-        url = "github:hyprwm/Hyprland";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
+		hyprland.url = "github:hyprwm/Hyprland";
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 		nur.url = "github:nix-community/NUR";
 
