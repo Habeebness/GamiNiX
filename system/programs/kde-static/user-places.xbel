@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xbel>
+<xbel xmlns:kdepriv="http://www.kde.org/kdepriv" xmlns:mime="http://www.freedesktop.org/standards/shared-mime-info" xmlns:bookmark="http://www.freedesktop.org/standards/desktop-bookmarks">
+ <info>
+  <metadata owner="http://www.kde.org">
+   <kde_places_version>4</kde_places_version>
+   <GroupState-Places-IsHidden>false</GroupState-Places-IsHidden>
+   <GroupState-Remote-IsHidden>false</GroupState-Remote-IsHidden>
+   <GroupState-Devices-IsHidden>false</GroupState-Devices-IsHidden>
+   <GroupState-RemovableDevices-IsHidden>false</GroupState-RemovableDevices-IsHidden>
+   <GroupState-Tags-IsHidden>false</GroupState-Tags-IsHidden>
+   <withRecentlyUsed>true</withRecentlyUsed>
+   <GroupState-RecentlySaved-IsHidden>true</GroupState-RecentlySaved-IsHidden>
+   <withBaloo>true</withBaloo>
+   <GroupState-SearchFor-IsHidden>false</GroupState-SearchFor-IsHidden>
+  </metadata>
+ </info>
+ <bookmark href="file:///home/iggut">
+  <title>Home</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="user-home"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680292733/0</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Desktop">
+  <title>Desktop</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="user-desktop"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680292733/1</ID>
+    <isSystemItem>true</isSystemItem>
+    <IsHidden>true</IsHidden>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Documents">
+  <title>Documents</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-documents"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680292733/2</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Downloads">
+  <title>Downloads</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-downloads"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680292733/3</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Music">
+  <title>Music</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-music"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680292733/6</ID>
+    <isSystemItem>true</isSystemItem>
+    <IsHidden>true</IsHidden>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Pictures">
+  <title>Pictures</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-pictures"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680292733/7</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Videos">
+  <title>Videos</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-videos"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680292733/8</ID>
+    <isSystemItem>true</isSystemItem>
+    <IsHidden>true</IsHidden>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Documents/browser">
+  <title>Browser stuff</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-violet"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680370364/0</ID>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Documents/chaotic">
+  <title>Chaotic-AUR</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-remote-symbolic"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680370366/1</ID>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Documents/misc/dr460nixed">
+  <title>NixOS devices</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="bookmarks"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680427159/0</ID>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Documents/garuda">
+  <title>Garuda Linux</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="start-here-kde-plasma"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680370371/3</ID>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Documents/garuda/infra-nix">
+  <title>Infrastructure</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="user-bookmarks"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680427320/1</ID>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Documents/misc">
+  <title>Misc stuff</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-publicshare-symbolic"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680370384/4</ID>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Nextcloud">
+  <title>Nextcloud</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-cloud"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680370493/8</ID>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Documents/pkgbuilds">
+  <title>PKGBUILDs</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-text"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680370388/5</ID>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Documents/school">
+  <title>School</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-brown"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680370392/6</ID>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/iggut/Documents/work">
+  <title>Work area</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-important"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680370396/7</ID>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="remote:/">
+  <title>Network</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-network"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680292733/4</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="trash:/">
+  <title>Trash</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="user-trash"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680292733/5</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="recentlyused:/files">
+  <title>Recent Files</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="document-open-recent"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680292733/9</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="recentlyused:/locations">
+  <title>Recent Locations</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-open-recent"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1680292733/10</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/nvme0n1p2</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <bookmark href="kdeconnect://c9b46110e36de16a/">
+  <title>Pixel 6</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="kdeconnect"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1682260464/0</ID>
+   </metadata>
+  </info>
+ </bookmark>
+</xbel>

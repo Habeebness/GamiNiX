@@ -1,24 +1,29 @@
-{ stdenvNoCC, fetchFromGitHub, python3, ... }:
+{
+  stdenvNoCC,
+  fetchFromGitHub,
+  python3,
+  ...
+}:
+stdenvNoCC.mkDerivation {
+  name = "adwaita-for-steam";
+  version = "0.38";
 
-stdenvNoCC.mkDerivation rec {
-	name = "adwaita-for-steam";
-	version = "0.36";
+  src = fetchFromGitHub {
+    owner = "Foldex";
+    repo = "Adwaita-for-Steam";
+    # rev = "v${version}";
+    rev = "951831fdfe125aeead9833a331955fbc124a07f1";
+    sha256 = "78mHgMXrWQB3e+z6D8+wXPD5aN2oB2ZaX0RW8ikY0aQ=";
+  };
 
-	src = fetchFromGitHub {
-		owner = "tkashkin";
-		repo = "Adwaita-for-Steam";
-		rev = "v${version}";
-		sha256 = "1j+jJED9r9t4OAPz86lwZvN25jaAlOUnLEOMPo0biG4=";
-	};
+  preferLocalBuild = true;
 
-	preferLocalBuild = true;
+  nativeBuildInputs = [python3];
 
-	nativeBuildInputs = [ python3 ];
+  patches = [./install.patch];
 
-	patches = [ ./install.patch ];
-
-	installPhase = ''
-		mkdir -p $out
-		NIX_OUT="$out" python install.py
-	'';
+  installPhase = ''
+    mkdir -p $out/build
+    NIX_OUT="$out" python install.py -we library/hide_whats_new -we login/hover_qr -we windowcontrols/hide-close
+  '';
 }

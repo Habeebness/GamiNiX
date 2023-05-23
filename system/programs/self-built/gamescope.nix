@@ -1,25 +1,24 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 with lib; let
   cfg = config.programs.gamescope;
 
-  gamescope =
-    let
-      wrapperArgs =
-        optional (cfg.args != [ ])
-          ''--add-flags "${toString cfg.args}"''
-        ++ builtins.attrValues (mapAttrs (var: val: "--set-default ${var} ${val}") cfg.env);
-    in
-    pkgs.runCommand "gamescope" { nativeBuildInputs = [ pkgs.makeBinaryWrapper ]; } ''
+  gamescope = let
+    wrapperArgs =
+      optional (cfg.args != [])
+      ''--add-flags "${toString cfg.args}"''
+      ++ builtins.attrValues (mapAttrs (var: val: "--set-default ${var} ${val}") cfg.env);
+  in
+    pkgs.runCommand "gamescope" {nativeBuildInputs = [pkgs.makeBinaryWrapper];} ''
       mkdir -p $out/bin
       makeWrapper ${cfg.package}/bin/gamescope $out/bin/gamescope --inherit-argv0 \
         ${toString wrapperArgs}
     '';
-in
-{
+in {
   options.programs.gamescope = {
     enable = mkEnableOption (mdDoc "gamescope");
 
@@ -36,14 +35,15 @@ in
       type = types.bool;
       default = false;
       description = mdDoc ''
-        Add cap_sys_nice capability to the GameScope binary.
+        Add cap_sys_nice capability to the GameScope
+        binary so that it may renice itself.
       '';
     };
 
     args = mkOption {
       type = types.listOf types.string;
-      default = [ ];
-      example = [ "--rt" "--prefer-vk-device 8086:9bc4" ];
+      default = [];
+      example = ["--rt" "--prefer-vk-device 8086:9bc4"];
       description = mdDoc ''
         Arguments passed to GameScope on startup.
       '';
@@ -51,7 +51,7 @@ in
 
     env = mkOption {
       type = types.attrsOf types.string;
-      default = { };
+      default = {};
       example = literalExpression ''
         # for Prime render offload on Nvidia laptops.
         # Also requires `hardware.nvidia.prime.offload.enable`.
@@ -77,8 +77,8 @@ in
       };
     };
 
-    environment.systemPackages = mkIf (!cfg.capSysNice) [ gamescope ];
+    environment.systemPackages = mkIf (!cfg.capSysNice) [gamescope];
   };
 
-  meta.maintainers = with maintainers; [ nrdxp ];
+  meta.maintainers = with maintainers; [nrdxp];
 }

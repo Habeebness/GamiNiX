@@ -1,34 +1,102 @@
-{pkgs, ...}: {
-  disabledModules = ["programs/steam.nix"];
-  imports = [
-    ./self-built/steam.nix
-    ./self-built/gamescope.nix
+{
+  pkgs,
+  lib,
+  user,
+  chaotic,
+  ...
+}: {
+  environment.systemPackages = with pkgs; [
+    goverlay
+    mangohud
+    prismlauncher
+    lunar-client
+    minetest
+    osu-lazer-bin
+    protonup-qt
+    linux_cachyos
+    beautyline-icons
+    fastfetch
+    ananicy-cpp-rules
   ];
 
-  programs.steam.enable = true;
-  environment.sessionVariables = rec { STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d"; };
-  # gamescope module (not yet merged nixos/nixpkgs#187507)
-  programs.steam.gamescopeSession.enable = true;
-  programs.gamemode.enable = true;
-  programs.gamemode.enableRenice = true;
-  programs.gamescope.enable = true;
-  programs.gamescope.capSysNice = true;
-  
-  # ----------------------------------
+  hardware = {
+    steam-hardware.enable = true;
+    # xpadneo.enable = true;
+  };
 
-  # fps games on laptop need this
-  services.xserver.libinput.touchpad.disableWhileTyping = false;
+  # Enable gamemode
+  programs.gamemode = {
+    enable = true;
+    enableRenice = true;
+    settings = {
+      general = {
+        softrealtime = "auto";
+        renice = 10;
+      };
+      custom = {
+        start = "notify-send -a 'Gamemode' 'Optimizations activated'";
+        end = "notify-send -a 'Gamemode' 'Optimizations deactivated'";
+      };
+    };
+  };
 
-  # 32-bit support needed for steam
-  hardware.opengl.driSupport32Bit = true;
-  hardware.pulseaudio.support32Bit = true;
+  # improvement for games using lots of mmaps (same as steam deck)
+  boot.kernel.sysctl = {"vm.max_map_count" = 2147483642;};
 
-  # better for steam proton games
-  systemd.extraConfig = "DefaultLimitNOFILE=1048576";
-
-  # improve wine performance
-  environment.sessionVariables = {WINEDEBUG = "-all";};
-
-  # steam hardware
-  hardware.steam-hardware.enable = true;
+  ### Chaotic-LUG ###
+  chaotic.linux_hdr.specialisation.enable = true;
+  chaotic.appmenu-gtk3-module.enable = true;
+  # Unstable gamescope from Chaotic-Nyx
+  #chaotic.gamescope = {
+  #  enable = true;
+  #  package = pkgs.gamescope_git;
+  #  args = ["--rt" "--prefer-vk-device 1002:73ff"];
+  #  env = {
+  #    "__GLX_VENDOR_LIBRARY_NAME" = "amd";
+  #    "DRI_PRIME" = "1";
+  #    "MESA_VK_DEVICE_SELECT" = "pci:1002:73ff";
+  #    "__VK_LAYER_MESA_OVERLAY_CONFIG" = "ld.so.preload";
+  #    "DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1" = "1";
+  #  };
+  #  session = {
+  #    enable = true;
+  #    args = ["--rt"];
+  #    env = {
+  #      "__GLX_VENDOR_LIBRARY_NAME" = "amd";
+  #      "DRI_PRIME" = "1";
+  #      "MESA_VK_DEVICE_SELECT" = "pci:1002:73ff";
+  #      "__VK_LAYER_MESA_OVERLAY_CONFIG" = "ld.so.preload";
+  #      "DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1" = "1";
+  #    };
+  #  };
+  #};
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+  };
+  #Enable Gamescope
+  programs.gamescope = {
+    enable = true;
+    package = pkgs.gamescope_git;
+    capSysNice = true;
+    args = ["--prefer-vk-device 1002:73ff"];
+    env = {
+      "__GLX_VENDOR_LIBRARY_NAME" = "amd";
+      "DRI_PRIME" = "1";
+      "MESA_VK_DEVICE_SELECT" = "pci:1002:73ff";
+      "__VK_LAYER_MESA_OVERLAY_CONFIG" = "ld.so.preload";
+      "DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1" = "1";
+    };
+  };
+  #chaotic.steam.extraCompatPackages = with pkgs; [luxtorpeda proton-ge-custom];
+  # Chaotic cache
+  nix.settings = {
+    extra-substituters = [
+      "https://nyx.chaotic.cx"
+    ];
+    extra-trusted-public-keys = [
+      "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+    ];
+  };
 }

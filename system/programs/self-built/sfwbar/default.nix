@@ -20,8 +20,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "LBCrion";
     repo = pname;
-    rev = "08e4f2cab27de721201dc84ada549fc673b55436";
-    sha256 = "l906Y3T7fCBagzjFaL0J0VI54ku6OEosjHXZITCZlnA=";
+    rev = "583b73e3b09d5f9b62e185106ee53eaaf7fec1e0";
+    sha256 = "agu12JV2lythbADP1EO+16k3eehHlDXxmXQyCqytRkc=";
   };
 
   nativeBuildInputs = [
@@ -32,12 +32,12 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    gtk3 
-    gtk-layer-shell 
-    json_c 
-    glib 
-    libpulseaudio 
-    libmpdclient 
+    gtk3
+    gtk-layer-shell
+    json_c
+    glib
+    libpulseaudio
+    libmpdclient
     libxkbcommon
   ];
 
