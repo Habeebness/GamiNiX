@@ -45,7 +45,7 @@ then
 	fi
 
 	# Build the configuration
-	sudo nixos-rebuild switch 
+	sudo nixos-rebuild switch
 
 	if [ -f "$HOME/.nix-successful-build" ]; then
 		echo "Nix generation was successful!"
